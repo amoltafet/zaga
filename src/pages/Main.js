@@ -61,8 +61,9 @@ function Main() {
 
     <div style={{
         marginTop: "10rem",
-        marginLeft: "25rem",
-        marginRight: "25rem",
+        position: "absolute",
+        left: "10%",
+        right: "10%",
 
     }}>
         
