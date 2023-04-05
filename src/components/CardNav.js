@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { FunctionsTwoTone } from '@mui/icons-material';
 
 const images = require.context("../images", true);
 
@@ -34,3 +35,5 @@ export default function MediaCard({title, picture, link}) {
     </Card>
   );
 }
+
+

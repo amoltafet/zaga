@@ -1,6 +1,12 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://zaga.pages.dev/
+
+git clone ...
+npm install
+npm start
+https://mui.com/material-ui/getting-started/overview/
+
 
 ## Available Scripts
 
