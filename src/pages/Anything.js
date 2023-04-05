@@ -5,9 +5,7 @@ function Anything() {
 
   return (
     <div className="Main">
-       <Typography variant="h2" component="div" gutterBottom>
-         Generate Anything 
-         </Typography>
+     
            
             <Grid container spacing={2}>
                 <Grid item 

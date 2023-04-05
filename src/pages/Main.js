@@ -58,9 +58,7 @@ function Main() {
 
   return (
     <div className="Main">
-        <Typography variant="h2" component="h2" gutterBottom>
-            Gonzaga AI Chatbot (Research)
-        </Typography>
+        
         <Grid container spacing={2}>
             {pages.map((page) => (
                 <Grid item xs={12} md={6} lg={6}>
