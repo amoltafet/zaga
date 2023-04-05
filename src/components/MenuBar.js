@@ -16,7 +16,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 function MenuBar() {
 
   return (
-    <AppBar position="static">
+    <AppBar >
       <CssBaseline />
           <div style={{
             position: "absolute",

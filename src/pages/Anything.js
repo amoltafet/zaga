@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import Input from '@mui/joy/Input';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
@@ -9,6 +10,7 @@ import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCh
 import MenuBar from "../components/MenuBar";
 
 function Anything() {
+
 
   const conversations = [
     {
@@ -28,15 +30,51 @@ function Anything() {
       "chatgpt_response": "You can reset your password by going to the 'Forgot Password' page and entering your email address."
     }
   ]
+
+  const [data, setData] = useState(conversations);
     
+  const addData = () => {
+    // get value by id
+    let value = document.getElementById('input').value;
+    console.log(value);
+    if (value === "") {
+      return;
+    }
+    setData([...data, {user_input: value, chatgpt_response: "I am not connected right now"}]);
+    // remap the data
+  };
+
+  console.log(data);
+
+  const mapData = () => {
+    return data.map((conversation) => (
+                              
+        <>
+          <Alert variant="soft" sx={{
+            marginBottom: '1%',
+            marginLeft: '20%',
+          }}>{conversation.user_input}</Alert>
+          <Alert variant="outlined" 
+            startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
+
+          sx={{
+            marginBottom: '1%',    
+            marginRight: '20%',                                    
+          }}>{conversation.chatgpt_response}</Alert>
+
+        </>
+        
+    )) 
+          
+    }
 
   return (
     <div>
       <MenuBar />
     <div style={{
-      marginTop: "2rem",
-      marginLeft: "25rem",
-      marginRight: "25rem",
+      marginTop: "5%",
+      marginLeft: "20%",
+      marginRight: "20%",
 
   }}>
   
@@ -54,34 +92,17 @@ function Anything() {
                               </IconButton>
                             </Tooltip>
 
-                        <Box sx={{ paddingTop: '1rem' }} >
-                            {conversations.map((conversation) => (
-                              
-                                <>
-                                  <Alert variant="soft" sx={{
-                                    marginBottom: '1rem',
-                                    marginLeft: '20rem',
-                                  }}>{conversation.user_input}</Alert>
-                                  <Alert variant="outlined" 
-                                    startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
-
-                                  sx={{
-                                    marginBottom: '1rem',    
-                                    marginRight: '20rem',                                    
-                                  }}>{conversation.chatgpt_response}</Alert>
-
-                                </>
-                                
-                            )) 
-                                  
-                            }
+                        <Box sx={{ paddingTop: '2%' }} >
+                            {mapData()}
                         </Box>
                         
-                        <Input startDecorator={<TextFieldsIcon />} endDecorator={<Button color="primary">Send</Button>} 
+                        <Input startDecorator={<TextFieldsIcon />} endDecorator={<Button color="primary" onClick={addData}>Send</Button>
+                        }
                         sx={{
                             position: 'obsolute',
                             bottom: '1',
                         }}
+                        id="input" placeholder="Type something..."
                         />
                         
                     </Grid>
