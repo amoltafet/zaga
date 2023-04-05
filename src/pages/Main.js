@@ -1,6 +1,5 @@
 import { Button, Grid, Typography } from "@mui/material";
 import MediaCard from "../components/CardNav";
-import "../styles/Main.css";
 
 import ThumbUp from '@mui/icons-material/ThumbUp';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
@@ -57,7 +56,12 @@ function Main() {
 
 
   return (
-    <div className="Main">
+    <div style={{
+        marginTop: "10rem",
+        marginLeft: "25rem",
+        marginRight: "25rem",
+
+    }}>
         
         <Grid container spacing={2}>
             {pages.map((page) => (

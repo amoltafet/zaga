@@ -30,9 +30,13 @@ function Anything() {
     
 
   return (
-    <div className="Main">
-     
-          
+    <div style={{
+      marginTop: "2rem",
+      marginLeft: "25rem",
+      marginRight: "25rem",
+
+  }}>
+  
             <Grid container spacing={2}>
                 <Grid item 
                     xs={12} 
