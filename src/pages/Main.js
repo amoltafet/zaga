@@ -1,8 +1,8 @@
 import { Button, Grid, Typography } from "@mui/material";
 import MediaCard from "../components/CardNav";
-
 import ThumbUp from '@mui/icons-material/ThumbUp';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import MenuBar from "../components/MenuBar";
 
 const images = require.context("../images", true);
 
@@ -56,6 +56,9 @@ function Main() {
 
 
   return (
+    <div>     
+        <MenuBar />
+
     <div style={{
         marginTop: "10rem",
         marginLeft: "25rem",
@@ -65,7 +68,7 @@ function Main() {
         
         <Grid container spacing={2}>
             {pages.map((page) => (
-                <Grid item xs={12} md={6} lg={6}>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <MediaCard  props={page}/>
                 </Grid>
             ))}
@@ -77,6 +80,7 @@ function Main() {
         <Button variant="outlined" color="primary" sx={{marginTop: "2rem", marginLeft: "5px"}}>
             <ThumbUp />
         </Button>
+    </div>
     </div>
   );
 }

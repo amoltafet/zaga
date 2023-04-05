@@ -6,6 +6,7 @@ import IconButton from '@mui/joy/IconButton';
 import Tooltip from '@mui/joy/Tooltip';
 import Alert from '@mui/joy/Alert';
 import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
+import MenuBar from "../components/MenuBar";
 
 function Anything() {
 
@@ -30,6 +31,8 @@ function Anything() {
     
 
   return (
+    <div>
+      <MenuBar />
     <div style={{
       marginTop: "2rem",
       marginLeft: "25rem",
@@ -85,6 +88,7 @@ function Anything() {
             </Grid>
 
            
+    </div>
     </div>
   );
 }

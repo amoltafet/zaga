@@ -27,9 +27,10 @@ export default function MediaCard({props}) {
       variant="outlined"
       orientation="horizontal"
       sx={{
-        width: 320,
+        width: "100%",
         gap: 2,
         '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
+        overflow: 'hidden',
       }}
     >
       <AspectRatio ratio="1" sx={{ width: 90 }}>
