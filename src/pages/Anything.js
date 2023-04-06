@@ -92,8 +92,7 @@ function Anything() {
                 <Grid item 
                     xs={12} 
                     sx={{
-                        border: '1px solid #e0e0e0',
-                        borderRadius: '10px',
+                        
                         padding: '8px',
                     }}>
                             <Tooltip title="Restart">
@@ -106,20 +105,29 @@ function Anything() {
                             {mapData()}
                         </Box>
                         
-                        <Input startDecorator={<TextFieldsIcon />} endDecorator={<Button color="primary" onClick={addData}>Send</Button>
-                        }
-                        sx={{
-                            position: 'obsolute',
-                            bottom: '1',
-                        }}
-                        id="input" placeholder="Type something..."
-                        />
+                       
                         
                     </Grid>
+                   
             </Grid>
 
            
     </div>
+    <Input
+  startDecorator={<TextFieldsIcon />}
+  endDecorator={<Button color="primary" onClick={addData}>Send</Button>}
+  sx={{
+    position: 'fixed',
+    bottom: '0',
+    width: '60%',
+    marginLeft: '20%',
+    marginRight: '20%',
+    marginBottom: '5%',
+  }}
+  id="input"
+  placeholder="Type something..."
+/>
+
     </div>
   );
 }
