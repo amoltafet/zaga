@@ -43,13 +43,13 @@ function Anything() {
   const mapData = () => {
     if (data.length === 0) {
       return (
-        <Alert variant="outlined"
+        <Typography variant="outlined"
           sx={{
             marginBottom: '20%',
             marginTop: '20%',
-            marginLeft: '20%',
+            marginLeft: '25%',
             marginRight: '20%',
-          }}>No conversations yet. Start one by typing in the box below.</Alert>
+          }}>No conversations yet. Start one by typing in the box below.</Typography>
       )
     } else {
 
