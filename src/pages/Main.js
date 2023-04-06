@@ -74,7 +74,8 @@ function Main() {
                 </Grid>
             ))}
         </Grid>
-        <Button variant="outlined" sx={{
+        <Button variant="outlined" onClick={() => {window.location.href = "/projects"} }
+        sx={{
             marginTop: "2rem",
         }}>Projects</Button>
         <Button variant="outlined" sx={{marginTop: "2rem", marginLeft: "5px"}}><QuestionMarkIcon /></Button>
