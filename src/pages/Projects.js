@@ -9,6 +9,8 @@ import Button from '@mui/joy/Button';
 import { Grid } from '@mui/material';
 
 export default function Projects() {
+    const [user, setUser] = React.useState(null);
+
     let numOverflowCards = 5;
     return(
         <div style={{

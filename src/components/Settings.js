@@ -56,6 +56,30 @@ export default function Settings( {toggleDrawer, anchor} ) {
         }}
       />
     </FormControl>
+
+    <FormControl
+      orientation="horizontal"
+      sx={{ width: '100%', marginTop: "20px", justifyContent: 'space-between' }}
+    >
+      <Box>
+        <FormLabel>Data Privacy</FormLabel>
+        <FormHelperText sx={{ mt: 0 }}>Enabled by default.</FormHelperText>
+      </Box>
+      <Switch
+        checked={checked}
+        onChange={(event) => setChecked(event.target.checked)}
+        color={checked ? 'success' : 'neutral'}
+        variant="outlined"
+        endDecorator={checked ? 'On' : 'Off'}
+        slotProps={{
+          endDecorator: {
+            sx: {
+              minWidth: 24,
+            },
+          },
+        }}
+      />
+    </FormControl>
     <List>
 
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (

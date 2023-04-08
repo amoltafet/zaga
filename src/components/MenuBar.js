@@ -1,7 +1,6 @@
 import React from "react";
 import {
   AppBar,
-  Toolbar,
   CssBaseline,
   Typography,
 } from "@mui/material";
@@ -9,19 +8,20 @@ import {
 import Button from '@mui/joy/Button';
 import Drawer from '@mui/material/Drawer';
 import Popover from '@mui/material/Popover';
-import Avatar from '@mui/joy/Avatar';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import Settings from "./Settings";
 import Notifications from "./Notifications";
+import Profile from "./Profile";
 
 export default function MenuBar() {
 
   const [settings, setSettings] = React.useState({right: false});
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorNotif, setAnchorNotif] = React.useState(null);
+  const [user, setUser] = React.useState(null);
 
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -85,6 +85,20 @@ export default function MenuBar() {
     <AppBar >
       <CssBaseline />
           {backBtnDisplay()}
+         <div style={{
+          position: "absolute",
+          left: "50%",
+          transform: "translate(-50%, 0%)",
+          marginTop: "1%",
+        }}>
+
+          {user ? <Typography variant="h6" >
+            {user}
+          </Typography> : <Typography variant="overline" sx={{ flexGrow: 1, textAlign: "center", color: "black" }}>
+            Create an account to save your progress!
+          </Typography>}
+        </div>
+
           <div style={{
             position: "absolute",
             right: "3%",
@@ -103,9 +117,11 @@ export default function MenuBar() {
               vertical: 'bottom',
               horizontal: 'left',
             }}
+            sx={{
+              marginTop: "10px",
+            }}
           >
-            <Typography sx={{ p: 2 }}>Profile</Typography>
-            <Avatar variant="outlined" />
+            <Profile />
 
           </Popover>
           <Button variant="outlined" color="neutral" sx={{marginRight: "5px"}} aria-describedby={idNotification} onClick={handleNotificationClick}>
@@ -119,6 +135,9 @@ export default function MenuBar() {
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'left',
+            }}
+            sx={{
+              marginTop: "10px",
             }}
             
           >

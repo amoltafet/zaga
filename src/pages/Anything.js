@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { Box, Button, Card, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Input from '@mui/joy/Input';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import IconButton from '@mui/joy/IconButton';
 import Tooltip from '@mui/joy/Tooltip';
 import Alert from '@mui/joy/Alert';
-import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
 import MenuBar from "../components/MenuBar";
+import GeneratePrompts from "../util/GeneratePrompts.js";
 
 function Anything() {
-
 
   const [data, setData] = useState([]);
 
@@ -18,14 +17,17 @@ function Anything() {
     setData([]);
   };
     
-  const addData = () => {
+  const addData = async () => {
     // get value by id
     let value = document.getElementById('input').value;
     console.log(value);
     if (value === "") {
       return;
     }
-    setData([...data, {user_input: value, chatgpt_response: "I am not connected right now"}]);
+    const prompts = await GeneratePrompts(value);
+    const apiResponse = prompts;
+    console.log(prompts);
+    setData([...data, {user_input: value, chatgpt_response: apiResponse}]);
     document.getElementById('input').value = "";
     // scroll to bottom
     console.log(document.getElementById("outputBox").scrollHeight);
@@ -33,8 +35,6 @@ function Anything() {
       var objDiv = document.getElementById("outputBox");
       objDiv.scrollTo(0, objDiv.scrollHeight, { behavior: 'smooth' });
     }, 0);
-
-
 
   };
 
@@ -61,13 +61,12 @@ function Anything() {
             marginBottom: '1%',
             marginLeft: '20%',
           }}>{conversation.user_input}</Alert>
-          <Alert variant="outlined" 
-            startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
-
-          sx={{
-            marginBottom: '1%',    
-            marginRight: '20%',                                    
+          <Alert variant="outlined" sx={{
+            marginBottom: '1%',
+            marginRight: '20%',
           }}>{conversation.chatgpt_response}</Alert>
+
+
 
         </>
         
@@ -131,5 +130,7 @@ function Anything() {
     </div>
   );
 }
+
+
 
 export default Anything;
