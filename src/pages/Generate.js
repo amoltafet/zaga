@@ -1,5 +1,4 @@
-import { Button, Card, Grid, Typography } from "@mui/material";
-import MediaCard from "../components/CardNav";
+
 
 function Generate() {
 

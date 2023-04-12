@@ -8,7 +8,7 @@ const images = require.context("../images", true);
 
 
 function Main() {
-
+    
     const pages = [
         {
             title: "Writer",
@@ -74,9 +74,8 @@ function Main() {
                 </Grid>
             ))}
         </Grid>
-        <Button variant="outlined" sx={{
-            marginTop: "2rem",
-        }}>Projects</Button>
+        <Button variant="contained" onClick={() => {window.location.href = "/projects"} }
+        sx={{ marginTop: "2rem", }}>Projects</Button>
         <Button variant="outlined" sx={{marginTop: "2rem", marginLeft: "5px"}}><QuestionMarkIcon /></Button>
         <Button variant="outlined" color="primary" sx={{marginTop: "2rem", marginLeft: "5px"}}>
             <ThumbUp />
