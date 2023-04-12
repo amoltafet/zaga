@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Anything from "./pages/Anything";
 import Generate from "./pages/Generate";
 import Main from './pages/Main';
+import Brainstorm from './pages/Brainstorm';
+
 import Projects from "./pages/Projects";
 import Custom404 from "./pages/404";
 import Login from "./pages/Login";
@@ -30,6 +32,7 @@ function App() {
       <Route path="/" element={<Main />} />
       <Route path="/generate" element={<Generate />} />
       <Route path="/anything" element={<Anything />} />
+      <Route path="/brainstorm" element={<Brainstorm />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="*" element={<Custom404 />} />
       <Route path="/login" element={<Login />} />
