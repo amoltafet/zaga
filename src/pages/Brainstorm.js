@@ -41,10 +41,10 @@ function Brainstorm () {
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid black', m:2, p:2,borderRadius:'16px'  }}>Filler</Box>
       </Grid>
       <Grid item xs={4}>
-        <Box sx={{ justifyContent:'center', alignItems: 'center', border: '1px solid black', m:2, p:2,borderRadius:'16px' }} >Filler </Box>
+        <Box sx={{ display:'flex',justifyContent:'center', alignItems: 'center', border: '1px solid black', m:2, p:2,borderRadius:'16px' }} >Filler </Box>
       </Grid>
       <Grid item xs={4}>
-        <Box sx={{ justifyContent:'center', alignItems: 'center', border: '1px solid black', m:2, p:2,borderRadius:'16px' }} >Filler </Box>
+        <Box sx={{ display:'flex',justifyContent:'center', alignItems: 'center', border: '1px solid black', m:2, p:2,borderRadius:'16px' }} >Filler </Box>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body1" contentEditable onInput={handleInput}sx={{border: '1px solid black', m:2, p:1, borderRadius:'16px'}}>
