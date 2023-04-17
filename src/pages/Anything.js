@@ -175,16 +175,18 @@ function Anything() {
       <div
         style={{
           marginTop: "5%",
-          marginLeft: "20%",
-          marginRight: "20%",
-        }}>
+          marginLeft: "10%",
+          marginRight: "10%",
+        }}
+      >
         <Grid container spacing={2}>
           <Grid
             item
             xs={12}
             sx={{
               padding: "8px",
-            }}>
+            }}
+          >
             <Tooltip title="Restart">
               <IconButton onClick={clearData}>
                 <RefreshIcon />
@@ -197,6 +199,11 @@ function Anything() {
                 maxHeight: BoxHeight,
                 height: BoxHeight,
                 overflow: "scroll",
+                overflowX: "hidden",
+                // hide scrollbar
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
               }}
               id="outputBox"
             >
@@ -207,60 +214,68 @@ function Anything() {
       </div>
       <div
         style={{
-          width: "60%",
-          marginLeft: "20%",
-          marginRight: "20%",
+          width: "80%",
+          marginLeft: "10%",
+          marginRight: "10%",
           marginBottom: "5%",
         }}
       >
         {data.length === 0 ? (
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              overflow: "scroll",
-              gap: "1%",
-              // hide scrollbar
-              msOverflowStyle: "none",
-              scrollbarWidth: "none",
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
+              width: "100%",
+              height: "100%",
+              overflow: "hidden",
+              position: "relative",
             }}
           >
-            <Chip
-              variant="outlined"
-              startDecorator={<HttpIcon />}
-              onClick={() => {
-                handleChipClick("How to create a HTTP request in React?");
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+
+                gap: "1%",
+
+                // hide scrollbar
+
+                overflowY: "hidden",
+                overflowX: "scroll",
               }}
-              sx={{ marginBottom: "1%" }}
             >
-              How to create a HTTP request in React?
-            </Chip>
-            <Chip
-              variant="outlined"
-              startDecorator={<Sun />}
-              onClick={() => {
-                handleChipClick("Why is the sky light blue?");
-              }}
-              sx={{ marginBottom: "1%" }}
-            >
-              Why is the sky light blue?
-            </Chip>
-            <Chip
-              variant="outlined"
-              startDecorator={<SurfingOutlinedIcon />}
-              onClick={() => {
-                handleChipClick(
-                  "Does the sun move around because of the earth?"
-                );
-              }}
-              sx={{ marginBottom: "1%" }}
-            >
-              Can I go surfing in the winter in California?
-            </Chip>
+              <Chip
+                variant="outlined"
+                startDecorator={<HttpIcon />}
+                onClick={() => {
+                  handleChipClick("How to create a HTTP request in React?");
+                }}
+                sx={{ marginBottom: "1%" }}
+              >
+                How to create a HTTP request in React?
+              </Chip>
+              <Chip
+                variant="outlined"
+                startDecorator={<Sun />}
+                onClick={() => {
+                  handleChipClick("Why is the sky light blue?");
+                }}
+                sx={{ marginBottom: "1%" }}
+              >
+                Why is the sky light blue?
+              </Chip>
+              <Chip
+                variant="outlined"
+                startDecorator={<SurfingOutlinedIcon />}
+                onClick={() => {
+                  handleChipClick(
+                    "Does the sun move around because of the earth?"
+                  );
+                }}
+                sx={{ marginBottom: "1%" }}
+              >
+                Can I go surfing in the winter in California?
+              </Chip>
+            </div>
           </div>
         ) : (
           <></>

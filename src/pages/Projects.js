@@ -1,43 +1,43 @@
-import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Card from '@mui/joy/Card';
-import CardOverflow from '@mui/joy/CardOverflow';
-import Divider from '@mui/joy/Divider';
-import Typography from '@mui/joy/Typography';
-import MenuBar from '../components/MenuBar';
-import Button from '@mui/joy/Button';
-import { Grid } from '@mui/material';
+import * as React from "react";
+import AspectRatio from "@mui/joy/AspectRatio";
+import Card from "@mui/joy/Card";
+import CardOverflow from "@mui/joy/CardOverflow";
+import Divider from "@mui/joy/Divider";
+import Typography from "@mui/joy/Typography";
+import MenuBar from "../components/MenuBar";
+import Button from "@mui/joy/Button";
+import { Grid } from "@mui/material";
 
 export default function Projects() {
-    const [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState(null);
 
-    let numOverflowCards = 5;
-    return(
-        <div style={{
-            marginTop: "5%",
-            marginLeft: "20%",
-            marginRight: "20%",
-      
-        }}>
-            <MenuBar />
-            <Typography variant="h1" sx={{ fontSize: 'h1', mt: 2 }}>
-                Projects
-            </Typography>
-            <Grid container spacing={2}>
-                {Array.from(Array(numOverflowCards).keys()).map((_, index) => (
-                    <Grid item xs={4} >
-                        <OverflowCard />
-                    </Grid>
-                ))}
-            </Grid>
-
-        </div>
-    )
+  let numOverflowCards = 5;
+  return (
+    <div
+      style={{
+        marginTop: "5%",
+        marginLeft: "20%",
+        marginRight: "20%",
+      }}
+    >
+      <MenuBar />
+      <Typography variant="h1" sx={{ fontSize: "h1", mt: 2 }}>
+        Projects
+      </Typography>
+      <Grid container spacing={2}>
+        {Array.from(Array(numOverflowCards).keys()).map((_, index) => (
+          <Grid item xs={4}>
+            <OverflowCard />
+          </Grid>
+        ))}
+      </Grid>
+    </div>
+  );
 }
 
- function OverflowCard() {
+function OverflowCard() {
   return (
-    <Card variant="outlined" sx={{ width: '100%' }}>
+    <Card variant="outlined" sx={{ width: "100%" }}>
       <CardOverflow>
         <AspectRatio ratio="2">
           <img
@@ -48,7 +48,7 @@ export default function Projects() {
           />
         </AspectRatio>
       </CardOverflow>
-      <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
+      <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
         My Table Project
       </Typography>
       <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
@@ -58,18 +58,21 @@ export default function Projects() {
       <CardOverflow
         variant="soft"
         sx={{
-          display: 'flex',
+          display: "flex",
           gap: 1.5,
           py: 1.5,
-          px: 'var(--Card-padding)',
-          bgcolor: 'background.level1',
+          px: "var(--Card-padding)",
+          bgcolor: "background.level1",
         }}
       >
         <Button variant="outlined" size="sm">
-            View
+          View
         </Button>
         <Divider orientation="vertical" />
-        <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.secondary', marginTop: "1%" }}>
+        <Typography
+          level="body2"
+          sx={{ fontWeight: "md", color: "text.secondary", marginTop: "1%" }}
+        >
           1 hour ago
         </Typography>
       </CardOverflow>

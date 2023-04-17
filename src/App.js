@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
+
 function App() {
   const firebaseConfig = {
     apiKey: "AIzaSyCd7dgwMl9FfHsGHsav4RVfjKCIWwUR91A",

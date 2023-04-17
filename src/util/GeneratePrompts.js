@@ -1,14 +1,13 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 
 export default async function GeneratePrompts ({ prompt}) {
 
     const openai = new OpenAIApi(configuration);
-
-    const response = await openai.createCompletion({
+       const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: prompt,
         temperature: 0.7,
@@ -20,8 +19,8 @@ export default async function GeneratePrompts ({ prompt}) {
     // check the return value
      if (response.data.choices[0].text === "") {
        return "There was an error.";
-      }
+      } 
 
-       console.log(response.data.choices[0].text);
+      // console.log(response.data.choices[0].text);
        return response.data.choices[0].text;
 };
