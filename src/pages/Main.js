@@ -3,6 +3,7 @@ import MediaCard from "../components/CardNav";
 import ThumbUp from '@mui/icons-material/ThumbUp';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import MenuBar from "../components/MenuBar";
+import React from "react";
 
 const images = require.context("../images", true);
 

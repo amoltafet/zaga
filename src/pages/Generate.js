@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import Anything from "./Anything";
 import Grid from '@mui/material/Unstable_Grid2';
+import React from "react";
 
 function Generate() {
 

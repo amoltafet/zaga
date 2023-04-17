@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import React from "react";
 
 function App() {
   const firebaseConfig = {
