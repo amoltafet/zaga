@@ -19,6 +19,7 @@ export default function Profile() {
         getAuth().signOut();
         sessionStorage.removeItem("user");
         window.location.href = "/"
+        
     }
     return (
         <div style={{
@@ -36,13 +37,13 @@ export default function Profile() {
             }}>
                       <Avatar sx={{ width: 100, height: 100, flexShrink: 0, flexGrow: 0 }} src="/static/images/cards/live-from-space.jpg" />
 
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <CardContent sx={{ flex: '1 0 auto' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <CardContent sx={{ flex: '1 0 auto', overflow: "hidden" }}>
                 <Typography component="div" variant="h5">
                     {user.displayName}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
-                   {user.email}
+                   moltafeta@gmagsfafsafasfasfasfasfaasasf.com
                 </Typography>
               
                 </CardContent>

@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 export default async function GeneratePrompts ({ prompt}) {
@@ -12,12 +12,16 @@ export default async function GeneratePrompts ({ prompt}) {
         model: "text-davinci-003",
         prompt: prompt,
         temperature: 0.7,
-        max_tokens: 256,
+        max_tokens: 100,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
-    });
+    });  
+    // check the return value
+     if (response.data.choices[0].text === "") {
+       return "There was an error.";
+      }
 
-        return response.data.choices[0].text;
-
+       console.log(response.data.choices[0].text);
+       return response.data.choices[0].text;
 };

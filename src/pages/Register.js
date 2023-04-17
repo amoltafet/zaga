@@ -66,6 +66,8 @@ export default function Register(){
             const user = userCredential.user;
             sessionStorage.setItem("user", user.uid);
             navigate("/")
+            window.location.reload();
+
         })
         .catch((error) => {
             const errorCode = error.code;

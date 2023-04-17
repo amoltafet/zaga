@@ -1,18 +1,20 @@
 import { Box } from "@mui/material";
 import Anything from "./Anything";
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Unstable_Grid2';
 
 function Generate() {
 
   return (
     <div className="">
-       <Grid container spacing={2}>
-          <Grid item xs={8}>
+       <Grid container spacing={1}>
+          
+          <Grid xs={12} sm={8} md={8} lg={8}>
             <Anything />
           </Grid>
-          <Grid item xs={2}>
+          <Grid xs={12} sm={6} md={4} lg={3}>
 
           </Grid>
+         
         </Grid>
     </div>
   );

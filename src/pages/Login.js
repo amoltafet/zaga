@@ -32,6 +32,8 @@ export default function Login(){
             const user = userCredential.user;
             sessionStorage.setItem("user", user.uid);
             navigate("/")
+            window.location.reload();
+
         })
         .catch((error) => {
             if(error.code === 'auth/wrong-password'){
