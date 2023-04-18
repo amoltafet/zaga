@@ -94,7 +94,7 @@ export default function MenuBar() {
 
           {user ? <Typography variant="h6" >
             {user}
-          </Typography> : <Typography variant="overline" sx={{ flexGrow: 1, textAlign: "center", color: "black" }}>
+          </Typography> : <Typography variant="overline" sx={{ flexGrow: 1, textAlign: "center", color: "black", mr:3 }}>
             Create an account to save your progress!
           </Typography>}
         </div>
