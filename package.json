@@ -14,7 +14,10 @@
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.19.1",
     "mui": "^0.0.1",
+<<<<<<< HEAD
     "node": "^19.8.1",
+=======
+>>>>>>> f80f4e764b854829e3f5ae1f3f37ecb3d3862741
     "openai": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

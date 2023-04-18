@@ -1,23 +1,83 @@
-import { Box } from "@mui/material";
+import { Box, Divider, Tooltip, Typography } from "@mui/material";
 import Anything from "./Anything";
+<<<<<<< HEAD
 import Grid from '@mui/material/Unstable_Grid2';
 import React from "react";
 
+=======
+import Grid from "@mui/material/Unstable_Grid2";
+import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+>>>>>>> f80f4e764b854829e3f5ae1f3f37ecb3d3862741
 function Generate() {
+  let BoxHeight = window.innerHeight / 3;
 
   return (
-    <div className="">
-       <Grid container spacing={1}>
-          
-          <Grid xs={12} sm={8} md={8} lg={8}>
-            <Anything />
-          </Grid>
-          <Grid xs={12} sm={6} md={4} lg={3}>
-
-          </Grid>
-         
+    <Box sx={{ flexGrow: 1, marginTop: "2%" }}>
+      <Grid container spacing={1}>
+        <Grid xs={8}>
+          <Anything />
         </Grid>
-    </div>
+        <Grid
+          xs={4}
+          sx={{
+            marginTop: "6%",
+            padding: "2%",
+          }}
+        >
+          <Box
+            sx={{
+              border: "0.5px solid black",
+              borderRadius: "5px",
+              padding: "10px",
+              minHeight: BoxHeight,
+            }}
+          >
+            <Typography variant="overline" sx={{ textAlign: "center" }}>
+              Variables{" "}
+              <Tooltip title="Variables are the things that you want to change in your code or the things that you want to use in your code.">
+              <ErrorOutlineOutlinedIcon
+                fontSize="small"
+                sx={{
+                  position: "relative",
+                  left: "75%",
+                  top: "0%",
+                }}
+              />
+              </Tooltip>
+            </Typography>
+            <Divider sx={{ marginTop: "1%" }} />
+          </Box>
+
+          <Box
+            sx={{
+              border: "0.5px solid black",
+              borderRadius: "5px",
+              padding: "10px",
+              minHeight: BoxHeight,
+              marginTop: "5%",
+            }}
+          >
+            <Typography
+              variant="overline"
+              sx={{ textAlign: "center", marginTop: "1%" }}
+            >
+              Descriptions{" "}
+              <Tooltip title="Descriptions are the things that describe your code and it functions.">
+              <ErrorOutlineOutlinedIcon
+                fontSize="small"
+                sx={{
+                  position: "relative",
+                  left: "70%",
+                  top: "0%",
+                }}
+              />
+              </Tooltip>
+            </Typography>
+            <Divider sx={{ marginTop: "1%" }} />
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

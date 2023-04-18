@@ -1,14 +1,13 @@
-import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Link from '@mui/joy/Link';
-import Card from '@mui/joy/Card';
-import Chip from '@mui/joy/Chip';
-import Typography from '@mui/joy/Typography';
+import * as React from "react";
+import AspectRatio from "@mui/joy/AspectRatio";
+import Link from "@mui/joy/Link";
+import Card from "@mui/joy/Card";
+import Chip from "@mui/joy/Chip";
+import Typography from "@mui/joy/Typography";
 
 const images = require.context("../images", true);
 
-
-export default function MediaCard({props}) {
+export default function MediaCard({ props }) {
   const title = props.title;
   const logo = props.logo;
   const link = props.link;
@@ -22,16 +21,15 @@ export default function MediaCard({props}) {
       sx={{
         width: "100%",
         gap: 2,
-        '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
-        overflow: 'hidden',
+        "&:hover": {
+          boxShadow: "md",
+          borderColor: "neutral.outlinedHoverBorder",
+        },
+        overflow: "hidden",
       }}
     >
       <AspectRatio ratio="1" sx={{ width: 90 }}>
-        <img
-          src={images(`${logo}`) }
-          loading="lazy"
-          alt=""
-        />
+        <img src={images(`${logo}`)} loading="lazy" alt="" />
       </AspectRatio>
       <div>
         <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
@@ -42,7 +40,7 @@ export default function MediaCard({props}) {
             overlay
             underline="none"
             href={link}
-            sx={{ color: 'text.tertiary' }}
+            sx={{ color: "text.tertiary" }}
           >
             {describe}
           </Link>
@@ -51,7 +49,7 @@ export default function MediaCard({props}) {
           variant="outlined"
           color="primary"
           size="sm"
-          sx={{ pointerEvents: 'none' }}
+          sx={{ pointerEvents: "none" }}
         >
           {example}
         </Chip>
@@ -59,5 +57,3 @@ export default function MediaCard({props}) {
     </Card>
   );
 }
-
-
