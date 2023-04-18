@@ -4,7 +4,7 @@ const configuration = new Configuration({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 
-export default async function GeneratePrompts ({ prompt}) {
+export default async function GeneratePrompts (prompt) {
 
     const openai = new OpenAIApi(configuration);
        const response = await openai.createCompletion({
@@ -22,5 +22,6 @@ export default async function GeneratePrompts ({ prompt}) {
       } 
 
       // console.log(response.data.choices[0].text);
-       return response.data.choices[0].text;
+       return (
+        response.data.choices[0].text);
 };

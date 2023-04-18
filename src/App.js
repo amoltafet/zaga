@@ -3,6 +3,7 @@ import Anything from "./pages/Anything";
 import Generate from "./pages/Generate";
 import Main from './pages/Main';
 import Brainstorm from './pages/Brainstorm';
+import Search from './pages/Search';
 import Projects from "./pages/Projects";
 import Custom404 from "./pages/404";
 import Login from "./pages/Login";
@@ -38,6 +39,7 @@ function App() {
       <Route path="*" element={<Custom404 />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/search" element={<Search />} />
     </Routes>
   </BrowserRouter>
   );

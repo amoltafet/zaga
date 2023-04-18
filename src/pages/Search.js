@@ -1,17 +1,19 @@
+import React from "react";
 import { Box, Divider, Tooltip, Typography } from "@mui/material";
 import Anything from "./Anything";
 import Grid from "@mui/material/Unstable_Grid2";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import React from "react";
 
-function Generate() {
-  let BoxHeight = window.innerHeight / 3;
+function Search() {
+    let BoxHeight = window.innerHeight / 3;
 
-  return (
-    <Box sx={{ flexGrow: 1, marginTop: "2%" }}>
+    return (
+        <Box sx={{ flexGrow: 1, marginTop: "2%" }}>
       <Grid container spacing={1}>
         <Grid xs={8}>
-          <Anything />
+        <Box sx={{}}>
+            <Anything />
+        </Box>
         </Grid>
         <Grid
           xs={4}
@@ -76,5 +78,4 @@ function Generate() {
     </Box>
   );
 }
-
-export default Generate;
+export default Search;

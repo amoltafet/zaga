@@ -107,7 +107,7 @@ export default function MenuBar() {
         ) : (
           <Typography
             variant="overline"
-            sx={{ flexGrow: 1, textAlign: "center", color: "black" }}
+            sx={{flexGrow: 1, textAlign: "center", color: "black" }}
           >
             Create an account to save your progress!
           </Typography>
