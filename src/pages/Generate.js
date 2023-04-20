@@ -2,16 +2,36 @@ import { Box, Divider, Tooltip, Typography } from "@mui/material";
 import Anything from "./Anything";
 import Grid from "@mui/material/Unstable_Grid2";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+<<<<<<< HEAD
 import React from "react";
+=======
+import { useEffect, useState } from "react";
+import React from "react";
+import GeneratePrompts from "../util/GeneratePrompts.js";
+>>>>>>> 25121e1755828e23923ea06a04a8d2900c5f17df
 
 function Generate() {
   let BoxHeight = window.innerHeight / 3;
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const prompts = await GeneratePrompts("", "code");
+    const apiResponse = prompts;
+    // update data
+    setData([...data, apiResponse]);
+    
+  };
+  useEffect (() => {
+    
+    //
+    getData();
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1, marginTop: "2%" }}>
       <Grid container spacing={1}>
         <Grid xs={8}>
-          <Anything />
+       <Anything />
         </Grid>
         <Grid
           xs={4}
@@ -42,6 +62,22 @@ function Generate() {
               </Tooltip>
             </Typography>
             <Divider sx={{ marginTop: "1%" }} />
+            {data.map((item , index) => (
+               <React.Fragment key={index}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    marginTop: "1%",
+                    marginBottom: "1%",
+                    marginLeft: "2%",
+                  }}
+                >
+                  {item}
+                </Typography>
+              </React.Fragment>
+            ))
+            
+            }
           </Box>
 
           <Box

@@ -77,7 +77,7 @@ function Anything() {
       var objDiv = document.getElementById("outputBox");
       objDiv.scrollTo(0, objDiv.scrollHeight, { behavior: "smooth" });
     }, 0);
-    const prompts = await GeneratePrompts(value);
+    const prompts = await GeneratePrompts(value, "chat");
     const apiResponse = prompts;
     // update data
     setData([...data, { user_input: value, chatgpt_response: apiResponse }]);
@@ -131,7 +131,7 @@ function Anything() {
                   <React.Fragment>
                     <Chip
                       color="danger"
-                      variant="outlined"
+                      variant="plain"
                       startDecorator={<ThumbDownAltOutlinedIcon />}
                       onClick={() => alert("You clicked the  button!")}
                       sx={{
@@ -140,7 +140,7 @@ function Anything() {
                     ></Chip>
                     <Chip
                       color="success"
-                      variant="outlined"
+                      variant="plain"
                       startDecorator={<ThumbUpAltOutlinedIcon />}
                       onClick={() => alert("You clicked the  button!")}
                       sx={{
@@ -233,9 +233,6 @@ function Anything() {
               style={{
                 display: "flex",
                 gap: "1%",
-
-                // hide scrollbar
-
                 overflowY: "hidden",
                 overflowX: "scroll",
               }}
