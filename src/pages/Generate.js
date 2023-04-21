@@ -2,13 +2,9 @@ import { Box, Divider, Tooltip, Typography } from "@mui/material";
 import Anything from "./Anything";
 import Grid from "@mui/material/Unstable_Grid2";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-<<<<<<< HEAD
-import React from "react";
-=======
 import { useEffect, useState } from "react";
 import React from "react";
 import GeneratePrompts from "../util/GeneratePrompts.js";
->>>>>>> 25121e1755828e23923ea06a04a8d2900c5f17df
 
 function Generate() {
   let BoxHeight = window.innerHeight / 3;

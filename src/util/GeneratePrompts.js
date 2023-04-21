@@ -46,11 +46,7 @@ export default async function GeneratePrompts (prompt, type) {
       } */
 
       // console.log(response.data.choices[0].text);
-<<<<<<< HEAD
-       return (
-        response.data.choices[0].text);
-=======
+
        return "response.data.choices[0].text";
->>>>>>> 25121e1755828e23923ea06a04a8d2900c5f17df
 };
 

@@ -11,6 +11,7 @@ import Register from "./pages/Register";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import React from "react";
+import Help from "./pages/Help";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/help" element={<Help />} />
     </Routes>
   </BrowserRouter>
   );
