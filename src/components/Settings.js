@@ -12,11 +12,18 @@ import MailIcon from "@mui/icons-material/Mail";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import FormHelperText from "@mui/joy/FormHelperText";
+import { getTheme, setTheme } from "../theme/Colors";
 
 import Switch from "@mui/joy/Switch";
 
 export default function Settings({ toggleDrawer, anchor }) {
   const [checked, setChecked] = React.useState(false);
+
+  React.useEffect(() => {
+    setTheme(checked ? "dark" : "light");
+    console.log("Theme changed to " + (checked ? "dark" : "light"));
+  }, [checked]);
+
 
   return (
     <Box

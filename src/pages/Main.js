@@ -3,10 +3,11 @@ import MediaCard from "../components/CardNav";
 import ThumbUp from "@mui/icons-material/ThumbUp";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import MenuBar from "../components/MenuBar";
-
+import React, { useEffect } from "react";
 const images = require.context("../images", true);
 
 function Main() {
+
   const pages = [
     {
       title: "Writer",
@@ -52,8 +53,12 @@ function Main() {
     },
   ];
 
+
+
+ 
+
   return (
-    <div>
+    <div >
       <MenuBar />
 
       <div
@@ -62,6 +67,7 @@ function Main() {
           position: "absolute",
           left: "10%",
           right: "10%",
+
         }}
       >
         <Grid container spacing={2}>
