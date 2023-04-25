@@ -1,4 +1,4 @@
-import { Box, Grid, Paper } from '@mui/material';
+import { Box, Grid, Card } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import MenuBar from '../components/MenuBar';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -12,10 +12,13 @@ import React from 'react';
 
 function Help (){
 
-    const Item = styled(Paper)(({ theme }) => ({
-        padding:theme.spacing(1),
+    const Item = styled(Card)(({ theme, text }) => ({
+        ...theme.typography.body2,
+        border: "1px solid rgba(0, 0, 0, 0.5)",
         textAlign:'center',
-        color:theme.palette.text.secondary,
+        xs:4,
+        sx: {fontSize:'64px'},
+        description: text,
     }));
 
     return (
@@ -29,12 +32,14 @@ function Help (){
         <MenuBar />
         <Box sx={{flexGrow: 1, mt:"2%", alignItems:'center'}}>
             <Grid container spacing={2} sx={{border:"1px solid rgba(0, 0, 0, 0.5)"}}>
-                <Grid item xs={4} sx={{border: "1px solid rgba(0, 0, 0, 0.5)", textAlign:'center'}}>
+                <Grid>
+                    <Item>
                     <EditOutlinedIcon />
                     <h4>Writer</h4>
+                    </Item>
                 </Grid>
-                <Grid item xs={4}>
-                    <CodeOutlinedIcon/>
+                <Grid item xs={4} >
+                    <Item><CodeOutlinedIcon/></Item>
                 </Grid>
                 <Grid item xs={4}>
                     <PsychologyAltOutlinedIcon/>
@@ -51,7 +56,7 @@ function Help (){
 
             </Grid>
         </Box>
-        </div>
+    </div>
 
     )
 }
