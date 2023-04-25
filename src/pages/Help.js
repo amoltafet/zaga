@@ -16,9 +16,7 @@ function Help (){
         ...theme.typography.body2,
         border: "1px solid rgba(0, 0, 0, 0.5)",
         textAlign:'center',
-        xs:4,
-        sx: {fontSize:'64px'},
-        description: text,
+        color: theme.palette.text.secondary,
     }));
 
     return (
