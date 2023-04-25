@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { AppBar, CssBaseline, Typography } from "@mui/material";
-
+import { AppBar, Box, CssBaseline, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Button from "@mui/joy/Button";
 import Drawer from "@mui/material/Drawer";
 import Popover from "@mui/material/Popover";
@@ -91,106 +91,93 @@ export default function MenuBar() {
   };
 
   return (
-    <AppBar>
+    <>
       <CssBaseline />
-      {backBtnDisplay()}
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          transform: "translate(-50%, 0%)",
-          marginTop: "1%",
-        }}
-      >
-        {user ? (
-          <Typography variant="h6">{user}</Typography>
-        ) : (
-          <Typography
-            variant="overline"
-            sx={{flexGrow: 1, textAlign: "center", color: "black" }}
-          >
-            Create an account to save your progress!
-          </Typography>
-        )}
-      </div>
+      <Grid container>
+        <Grid item xs={12}>
+          <Box sx={{ flexGrow: 1 }}>
+          {backBtnDisplay()}
 
-      <div
-        style={{
-          position: "absolute",
-          right: "3%",
-          marginTop: "1%",
-        }}
-      >
-        <Button
-          aria-describedby={id}
-          variant="outlined"
-          color="neutral"
-          sx={{ marginRight: "5px" }}
-          onClick={handleClick}
-        >
-          <AccountCircleOutlinedIcon />
-        </Button>
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          sx={{
-            marginTop: "10px",
-          }}
-        >
-          <Profile />
-        </Popover>
-        <Button
-          variant="outlined"
-          color="neutral"
-          sx={{ marginRight: "5px" }}
-          aria-describedby={idNotification}
-          onClick={handleNotificationClick}
-        >
-          <NotificationsNoneOutlinedIcon />
-        </Button>
-        <Popover
-          id={idNotification}
-          open={openNotification}
-          anchorEl={anchorNotif}
-          onClose={handleNotificationClose}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          sx={{
-            marginTop: "10px",
-          }}
-        >
-          <Notifications />
-        </Popover>
-        <Button
-          aria-label="Like"
-          variant="outlined"
-          color="neutral"
-          onClick={toggleDrawer("right", true)}
-        >
-          <SettingsOutlinedIcon />
-        </Button>
-      </div>
-      <div>
-        {["right"].map((anchor) => (
-          <React.Fragment key={anchor}>
-            <Drawer
-              anchor={anchor}
-              open={settings[anchor]}
-              onClose={toggleDrawer(anchor, false)}
+          <div
+            style={{
+              position: "absolute",
+              right: "3%",
+              marginTop: "1%",
+            }}
+          >
+            <Button
+              aria-describedby={id}
+              variant="outlined"
+              color="neutral"
+              sx={{ marginRight: "5px" }}
+              onClick={handleClick}
             >
-              {<Settings toggleDrawer={toggleDrawer} anchor={anchor} />}
-            </Drawer>
-          </React.Fragment>
-        ))}
-      </div>
-    </AppBar>
+              <AccountCircleOutlinedIcon />
+            </Button>
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              sx={{
+                marginTop: "10px",
+              }}
+            >
+              <Profile />
+            </Popover>
+            <Button
+              variant="outlined"
+              color="neutral"
+              sx={{ marginRight: "5px" }}
+              aria-describedby={idNotification}
+              onClick={handleNotificationClick}
+            >
+              <NotificationsNoneOutlinedIcon />
+            </Button>
+            <Popover
+              id={idNotification}
+              open={openNotification}
+              anchorEl={anchorNotif}
+              onClose={handleNotificationClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              sx={{
+                marginTop: "10px",
+              }}
+            >
+              <Notifications />
+            </Popover>
+            <Button
+              aria-label="Like"
+              variant="outlined"
+              color="neutral"
+              onClick={toggleDrawer("right", true)}
+            >
+              <SettingsOutlinedIcon />
+            </Button>
+          </div>
+          <div>
+            {["right"].map((anchor) => (
+              <React.Fragment key={anchor}>
+                <Drawer
+                  anchor={anchor}
+                  open={settings[anchor]}
+                  onClose={toggleDrawer(anchor, false)}
+                >
+                  {<Settings toggleDrawer={toggleDrawer} anchor={anchor} />}
+                </Drawer>
+              </React.Fragment>
+            ))}
+          </div>
+          </Box>
+        </Grid>
+      </Grid>
+    </>
   );
 }

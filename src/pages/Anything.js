@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Input from "@mui/joy/Input";
 import TextFieldsIcon from "@mui/icons-material/TextFields";
@@ -15,15 +15,63 @@ import SurfingOutlinedIcon from "@mui/icons-material/SurfingOutlined";
 import CircularProgress from "@mui/joy/CircularProgress";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
-
-function Anything() {
+import Generate from "./Generate";
+import pageInfo from "../context";
+// recieve the variables from the Generate component
+export default function Anything() {
   const [data, setData] = useState([]);
   const [waiting, setWaiting] = useState(false);
+  const [pageTitle, setPageTitle] = useState("");
+
+  const [show, setShow] = useState(false);
+  // create a box object that has an array of objects and title
+  const [boxOne, setBoxOne] = useState({
+    title: "",
+    array: [],
+  });
+
+  const [boxTwo, setBoxTwo] = useState({
+    title: "",
+    array: [],
+  });
+
+  const url = window.location.href;
+
+  useEffect(() => {
+    // get the last part of the url
+    const lastPart = url.substring(url.lastIndexOf("/") + 1);
+    setPageTitle(lastPart);
+    // if last part is not 'anything' then show the generate component
+    if (lastPart !== "anything") {
+      setShow(true);
+      // set the boxOne and boxTwo titles
+      setBoxOne({ ...boxOne, title: pageInfo.find((page) => page.title === lastPart).boxOneTitle });
+      setBoxTwo({ ...boxTwo, title: pageInfo.find((page) => page.title === lastPart).boxTwoTitle });
+    } else {
+      setShow(false);
+    }
+  }, [url]);
 
   const clearData = () => {
     setData([]);
     setWaiting(false);
     document.getElementById("input").value = "";
+    setBoxOne({ ...boxOne, array: [] });
+    setBoxTwo({ ...boxTwo, array: [] });
+  };
+
+  const displayPage = () => {
+    if (pageTitle === "generate") {
+      return <Generate boxOne={boxOne} boxTwo={boxTwo} />;
+    } else if (pageTitle === "writer") {
+      return <Generate boxOne={boxOne} boxTwo={boxTwo} />;
+    } else if (pageTitle === "brainstorm") {
+      return <Generate boxOne={boxOne} boxTwo={boxTwo} />;
+    } else if (pageTitle === "search") {
+      return <Generate boxOne={boxOne} boxTwo={boxTwo} />;
+    } else {
+      return <></>;
+    }
   };
 
   // on enter key press
@@ -77,10 +125,19 @@ function Anything() {
       var objDiv = document.getElementById("outputBox");
       objDiv.scrollTo(0, objDiv.scrollHeight, { behavior: "smooth" });
     }, 0);
-    const prompts = await GeneratePrompts(value, "chat");
+    const prompts = await GeneratePrompts(value, "anything");
     const apiResponse = prompts;
     // update data
     setData([...data, { user_input: value, chatgpt_response: apiResponse }]);
+
+    // get updates for boxOne and boxTwo
+    const boxOnePrompt = await GeneratePrompts(value, pageTitle);
+    const boxTwoPrompt = await GeneratePrompts(apiResponse, pageTitle);
+    // add it to array
+    // remove whitespace before the text
+    setBoxOne({ ...boxOne, array: [...boxOne.array, boxOnePrompt] });
+    setBoxTwo({ ...boxTwo, array: [...boxTwo.array, boxTwoPrompt] });
+
     setWaiting(false);
     // scroll to bottom
     setTimeout(() => {
@@ -122,10 +179,12 @@ function Anything() {
               <></>
             ) : (
               <Alert
-                key={index}
+                // make the key unique
+                key={index + 999999}
                 sx={{
                   marginBottom: "1%",
                   marginRight: "20%",
+                  whiteSpace: "pre-wrap",
                 }}
                 endDecorator={
                   <React.Fragment>
@@ -175,18 +234,12 @@ function Anything() {
       <div
         style={{
           marginTop: "5%",
-          marginLeft: "10%",
-          marginRight: "10%",
+          marginLeft: "4%",
+          marginRight: "4%",
         }}
       >
         <Grid container spacing={2}>
-          <Grid
-            item
-            xs={12}
-            sx={{
-              padding: "8px",
-            }}
-          >
+          <Grid xs={show ? 8 : 12} sx={{ padding: "8px", marginTop: "1%" }}>
             <Tooltip title="Restart">
               <IconButton onClick={clearData}>
                 <RefreshIcon />
@@ -209,81 +262,76 @@ function Anything() {
             >
               {mapData()}
             </Box>
+            {data.length === 0 ? (
+              <div
+                style={{
+                  width: "100%",
+                  overflow: "hidden",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1%",
+                    overflowY: "hidden",
+                    overflowX: "scroll",
+                  }}
+                >
+                  <Chip
+                    variant="outlined"
+                    startDecorator={<HttpIcon />}
+                    onClick={() => {
+                      handleChipClick("How to create a HTTP request in React?");
+                    }}
+                    sx={{ marginBottom: "1%" }}
+                  >
+                    How to create a HTTP request in React?
+                  </Chip>
+                  <Chip
+                    variant="outlined"
+                    startDecorator={<Sun />}
+                    onClick={() => {
+                      handleChipClick("Why is the sky light blue?");
+                    }}
+                    sx={{ marginBottom: "1%" }}
+                  >
+                    Why is the sky light blue?
+                  </Chip>
+                  <Chip
+                    variant="outlined"
+                    startDecorator={<SurfingOutlinedIcon />}
+                    onClick={() => {
+                      handleChipClick(
+                        "Does the sun move around because of the earth?"
+                      );
+                    }}
+                    sx={{ marginBottom: "1%" }}
+                  >
+                    Can I go surfing in the winter in California?
+                  </Chip>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+            <Input
+              startDecorator={<TextFieldsIcon />}
+              endDecorator={ButtonStyle()}
+              id="input"
+              placeholder="Type something..."
+              onKeyPress={handleKeyPress}
+            />
           </Grid>
+          {show ? (
+            <Grid xs={4} sx={{ padding: "8px" }}>
+             {displayPage()}
+            </Grid>
+          ) : (
+            <></>
+          )}
         </Grid>
-      </div>
-      <div
-        style={{
-          width: "80%",
-          marginLeft: "10%",
-          marginRight: "10%",
-          marginBottom: "5%",
-        }}
-      >
-        {data.length === 0 ? (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                gap: "1%",
-                overflowY: "hidden",
-                overflowX: "scroll",
-              }}
-            >
-              <Chip
-                variant="outlined"
-                startDecorator={<HttpIcon />}
-                onClick={() => {
-                  handleChipClick("How to create a HTTP request in React?");
-                }}
-                sx={{ marginBottom: "1%" }}
-              >
-                How to create a HTTP request in React?
-              </Chip>
-              <Chip
-                variant="outlined"
-                startDecorator={<Sun />}
-                onClick={() => {
-                  handleChipClick("Why is the sky light blue?");
-                }}
-                sx={{ marginBottom: "1%" }}
-              >
-                Why is the sky light blue?
-              </Chip>
-              <Chip
-                variant="outlined"
-                startDecorator={<SurfingOutlinedIcon />}
-                onClick={() => {
-                  handleChipClick(
-                    "Does the sun move around because of the earth?"
-                  );
-                }}
-                sx={{ marginBottom: "1%" }}
-              >
-                Can I go surfing in the winter in California?
-              </Chip>
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
-        <Input
-          startDecorator={<TextFieldsIcon />}
-          endDecorator={ButtonStyle()}
-          id="input"
-          placeholder="Type something..."
-          onKeyPress={handleKeyPress}
-        />
       </div>
     </div>
   );
 }
-
-export default Anything;

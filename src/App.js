@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Anything from "./pages/Anything";
-import Generate from "./pages/Generate";
 import Main from './pages/Main';
 import Brainstorm from './pages/Brainstorm';
 import Search from './pages/Search';
@@ -25,6 +24,7 @@ function App() {
     measurementId: "G-V846TBDXJ7"
   };
 
+
     // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   getAuth(app);
@@ -33,10 +33,13 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/generate" element={<Generate />} />
+      <Route path="/generate" element={<Anything />} />
       <Route path="/anything" element={<Anything />} />
-      <Route path="/brainstorm" element={<Brainstorm />} />
+      <Route path="/search" element={<Anything />} />
+      <Route path="/brainstorm" element={<Anything />} />
       <Route path="/projects" element={<Projects />} />
+      <Route path="/writer" element={<Anything />} />
+
       <Route path="*" element={<Custom404 />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
