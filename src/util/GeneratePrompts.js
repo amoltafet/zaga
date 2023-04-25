@@ -15,14 +15,15 @@ export default async function GeneratePrompts (prompt, type) {
   }
 
   if (type === "anything") {
-    prompt = 'I am a bot. I will respond to your message. \n\n' + prompt;
     recentPrompts.push(prompt);
+    prompt = 'I am a bot. I will respond to your message. \n\n' + prompt;
+  }  else if (prompt === "BoxOne") {
+      prompt =  pageInfo.find(page => page.title === type).boxOnePrompt + recentPrompt;
+  } else if (prompt === "BoxTwo") {
+      prompt =  pageInfo.find(page => page.title === type).boxTwoPrompt + recentPrompt;
   } else {
-    prompt =  pageInfo.find(page => page.title === type).boxOnePrompt + prompt;
-    //prompt = recentPrompt + pageInfo.find(page => page.title === type).boxTwoPrompt;
+    // nothing
   }
-
-    console.log(prompt);
 
     const openai = new OpenAIApi(configuration);
       const response = await openai.createCompletion({
@@ -38,7 +39,6 @@ export default async function GeneratePrompts (prompt, type) {
      if (response.status !== 200) {
        return "There was an error.";
       } 
-
       // console.log(response.data.choices[0].text);
        return response.data.choices[0].text;
 };

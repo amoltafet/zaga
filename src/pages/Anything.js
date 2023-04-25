@@ -17,7 +17,7 @@ import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import Generate from "./Generate";
 import pageInfo from "../context";
-// recieve the variables from the Generate component
+
 export default function Anything() {
   const [data, setData] = useState([]);
   const [waiting, setWaiting] = useState(false);
@@ -28,11 +28,13 @@ export default function Anything() {
   const [boxOne, setBoxOne] = useState({
     title: "",
     array: [],
+    loading: false,
   });
 
   const [boxTwo, setBoxTwo] = useState({
     title: "",
     array: [],
+    loading: false,
   });
 
   const url = window.location.href;
@@ -119,26 +121,30 @@ export default function Anything() {
     if (value === "") {
       return;
     }
+    setBoxOne({ ...boxOne, loading: true });
+    setBoxTwo({ ...boxTwo, loading: true });
+   
     setData([...data, { user_input: value, chatgpt_response: "" }]);
     setWaiting(true);
     setTimeout(() => {
       var objDiv = document.getElementById("outputBox");
       objDiv.scrollTo(0, objDiv.scrollHeight, { behavior: "smooth" });
     }, 0);
-    const prompts = await GeneratePrompts(value, "anything");
-    const apiResponse = prompts;
+    let prompts = await GeneratePrompts(value, "anything");
+    // remove white space from the beginning of the string
+    prompts = prompts.replace(/^\s+/g, "");
     // update data
-    setData([...data, { user_input: value, chatgpt_response: apiResponse }]);
-
-    // get updates for boxOne and boxTwo
-    const boxOnePrompt = await GeneratePrompts(value, pageTitle);
-    const boxTwoPrompt = await GeneratePrompts(apiResponse, pageTitle);
-    // add it to array
-    // remove whitespace before the text
-    setBoxOne({ ...boxOne, array: [...boxOne.array, boxOnePrompt] });
-    setBoxTwo({ ...boxTwo, array: [...boxTwo.array, boxTwoPrompt] });
-
+    setData([...data, { user_input: value, chatgpt_response: prompts }]);
     setWaiting(false);
+    
+    // get updates for boxOne and boxTwo
+    let boxOnePrompt = await GeneratePrompts("BoxOne", pageTitle);
+    boxOnePrompt = boxOnePrompt.replace(/^\s+/g, "");
+    setBoxOne({ ...boxOne, array: [...boxOne.array, boxOnePrompt], loading: false });
+    let boxTwoPrompt = await GeneratePrompts("BoxTwo", pageTitle);
+    boxTwoPrompt = boxTwoPrompt.replace(/^\s+/g, "");
+    setBoxTwo({ ...boxTwo, array: [...boxTwo.array, boxTwoPrompt], loading: false });
+    
     // scroll to bottom
     setTimeout(() => {
       var objDiv = document.getElementById("outputBox");
@@ -170,6 +176,7 @@ export default function Anything() {
               key={index}
               sx={{
                 marginBottom: "1%",
+                marginTop: "1%",
                 marginLeft: "20%",
               }}
             >
@@ -178,6 +185,7 @@ export default function Anything() {
             {item.chatgpt_response === "" ? (
               <></>
             ) : (
+              <>
               <Alert
                 // make the key unique
                 key={index + 999999}
@@ -185,32 +193,30 @@ export default function Anything() {
                   marginBottom: "1%",
                   marginRight: "20%",
                   whiteSpace: "pre-wrap",
-                }}
-                endDecorator={
-                  <React.Fragment>
-                    <Chip
-                      color="danger"
-                      variant="plain"
-                      startDecorator={<ThumbDownAltOutlinedIcon />}
-                      onClick={() => alert("You clicked the  button!")}
-                      sx={{
-                        marginLeft: "1%",
-                      }}
-                    ></Chip>
-                    <Chip
-                      color="success"
-                      variant="plain"
-                      startDecorator={<ThumbUpAltOutlinedIcon />}
-                      onClick={() => alert("You clicked the  button!")}
-                      sx={{
-                        marginLeft: "1%",
-                      }}
-                    ></Chip>
-                  </React.Fragment>
-                }
-              >
+                }}>
                 {item.chatgpt_response}
               </Alert>
+               <Typography variant="overline" sx={{ marginLeft: "1%" }}>
+                Did you like this response?
+              </Typography>
+              <Chip
+                      color="success"
+                      variant="outlined"
+                      startDecorator={<ThumbUpAltOutlinedIcon  fontSize="small"/>}
+                      onClick={() => alert("You clicked the  button!")}
+                      sx={{
+                        marginLeft: "1%",
+                        marginRight: "1%",
+                      }}
+                    />
+                    <Chip
+                      color="danger"
+                      variant="outlined"
+                      startDecorator={<ThumbDownAltOutlinedIcon fontSize="small" />}
+                      onClick={() => alert("You clicked the  button!")}
+                      
+                   />
+              </>
             )}
           </>
         );
@@ -235,13 +241,13 @@ export default function Anything() {
         style={{
           marginTop: "5%",
           marginLeft: "4%",
-          marginRight: "4%",
+          marginRight: "2%",
         }}
       >
         <Grid container spacing={2}>
           <Grid xs={show ? 8 : 12} sx={{ padding: "8px", marginTop: "1%" }}>
             <Tooltip title="Restart">
-              <IconButton onClick={clearData}>
+              <IconButton onClick={clearData} variant="outlined">
                 <RefreshIcon />
               </IconButton>
             </Tooltip>

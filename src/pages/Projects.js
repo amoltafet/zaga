@@ -15,18 +15,17 @@ export default function Projects() {
   return (
     <div
       style={{
-        marginTop: "5%",
         marginLeft: "20%",
         marginRight: "20%",
       }}
     >
       <MenuBar />
-      <Typography variant="h1" sx={{ fontSize: "h1", mt: 2 }}>
+      <Typography variant="h1" sx={{ fontSize: "h1", marginTop: "4%"}}>
         Projects
       </Typography>
       <Grid container spacing={2}>
         {Array.from(Array(numOverflowCards).keys()).map((_, index) => (
-          <Grid item xs={4}>
+          <Grid item xs={4} key={index}>
             <OverflowCard />
           </Grid>
         ))}

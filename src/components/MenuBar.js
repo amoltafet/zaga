@@ -97,6 +97,7 @@ export default function MenuBar() {
         <Grid item xs={12}>
           <Box sx={{ flexGrow: 1 }}>
           {backBtnDisplay()}
+          
 
           <div
             style={{
