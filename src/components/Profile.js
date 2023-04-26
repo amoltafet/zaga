@@ -19,28 +19,22 @@ export default function Profile() {
     window.location.href = "/";
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        padding: "20px",
-      }}
-    >
+    <div>
       {user ? (
         <>
-          <div
-            style={{
-              display: "flex",
-            }}
-          >
+      <Typography variant="overline"  sx={{ flexGrow: 1, p: 1 }}>
+          Profile
+        </Typography>
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <Avatar
-              sx={{ width: 100, height: 100, flexShrink: 0, flexGrow: 0 }}
+              sx={{ width: 100, height: 100, flexShrink: 0, flexGrow: 0, alignSelf: "center" }}
               src="/static/images/cards/live-from-space.jpg"
             />
-
-            <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+            <Typography sx={{ alignSelf: "center", marginLeft: "10px" }}>
+              {user.displayName}
+            </Typography>
+          </div>
+            <Box sx={{ display: "flex", flexDirection: "column", flexGrow: 1, textAlign: "center" }}>
               <CardContent sx={{ flex: "1 0 auto", overflow: "hidden" }}>
                 <Typography component="div" variant="h5">
                   {user.displayName}
@@ -50,15 +44,15 @@ export default function Profile() {
                   color="text.secondary"
                   component="div"
                 >
-                  moltafeta@gmagsfafsafasfasfasfasfaasasf.com
+                  {user.email}
                 </Typography>
               </CardContent>
             </Box>
-          </div>
-          <Box sx={{ display: "flex", flexDirection: "row" }}>
+        
+
+          <Box sx={{ display: "flex", flexDirection: "row", alignContent: "center", justifyContent: "center" }}>
             <Button
               variant="outlined"
-              sx={{ marginTop: "20px" }}
               onClick={() => {
                 window.location.href = "/projects";
               }}
@@ -67,7 +61,7 @@ export default function Profile() {
             </Button>
             <Button
               variant="outlined"
-              sx={{ marginTop: "20px", marginLeft: "10px" }}
+              sx={{ marginLeft: "10px" }}
               onClick={Logout}
             >
               Logout

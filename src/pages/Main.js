@@ -4,8 +4,9 @@ import ThumbUp from "@mui/icons-material/ThumbUp";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import MenuBar from "../components/MenuBar";
 import React, { useEffect } from "react";
-const images = require.context("../images", true);
 
+
+const images = require.context("../images", true);
 function Main() {
 
   const pages = [
@@ -52,7 +53,6 @@ function Main() {
       example: "How do I make a website?",
     },
   ];
-
 
 
  

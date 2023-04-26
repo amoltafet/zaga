@@ -1,28 +1,20 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import FormHelperText from "@mui/joy/FormHelperText";
-import { getTheme, setTheme } from "../theme/Colors";
+import Button from '@mui/joy/Button';
+
 
 import Switch from "@mui/joy/Switch";
+import Profile from "./Profile";
 
 export default function Settings({ toggleDrawer, anchor }) {
   const [checked, setChecked] = React.useState(false);
+  const [dataPrivacy, setDataPrivacy] = React.useState(true);
 
-  React.useEffect(() => {
-    setTheme(checked ? "dark" : "light");
-    console.log("Theme changed to " + (checked ? "dark" : "light"));
-  }, [checked]);
 
 
   return (
@@ -34,7 +26,10 @@ export default function Settings({ toggleDrawer, anchor }) {
       role="presentation"
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <Typography variant="h6" component="div" sx={{ flexGrow: 1, p: 2 }}>
+      <Profile />
+      <Divider sx={{ mt: 2, mb: 2 }} />
+
+      <Typography variant="overline"  sx={{ flexGrow: 1, p: 1 }}>
         Settings
       </Typography>
 
@@ -42,7 +37,7 @@ export default function Settings({ toggleDrawer, anchor }) {
         orientation="horizontal"
         sx={{ width: "100%", justifyContent: "space-between" }}
       >
-        <Box>
+        <Box sx={{padding: 1}}>
           <FormLabel>Dark Mode</FormLabel>
           <FormHelperText sx={{ mt: 0 }}>Disabled by default.</FormHelperText>
         </Box>
@@ -66,20 +61,19 @@ export default function Settings({ toggleDrawer, anchor }) {
         orientation="horizontal"
         sx={{
           width: "100%",
-          marginTop: "20px",
           justifyContent: "space-between",
         }}
       >
-        <Box>
+        <Box sx={{padding: 1}}>
           <FormLabel>Data Privacy</FormLabel>
-          <FormHelperText sx={{ mt: 0 }}>Enabled by default.</FormHelperText>
+          <FormHelperText >Enabled by default.</FormHelperText>
         </Box>
         <Switch
-          checked={checked}
-          onChange={(event) => setChecked(event.target.checked)}
-          color={checked ? "success" : "neutral"}
+          checked={dataPrivacy}
+          onChange={(event) => setDataPrivacy(event.target.checked)}
+          color={dataPrivacy ? "success" : "neutral"}
           variant="outlined"
-          endDecorator={checked ? "On" : "Off"}
+          endDecorator={dataPrivacy ? "On" : "Off"}
           slotProps={{
             endDecorator: {
               sx: {
@@ -89,31 +83,27 @@ export default function Settings({ toggleDrawer, anchor }) {
           }}
         />
       </FormControl>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+
+      <Button variant="outlined"  color="success" onClick={function(){}} fullWidth sx={{
+          marginBottom: "10px",
+          marginTop: "10px"
+        }}>Download Data</Button>
+
+        
+
+      <Box sx={{ flexGrow: 1 }} >
+        <Divider sx={{ mt: 2, mb: 2 }} />
+        <Typography variant="overline"  sx={{  p: 1}}>
+          Project Settings
+        </Typography>
+        <Button variant="outlined"  color="success" onClick={function(){}} fullWidth sx={{
+          marginBottom: "10px",
+          marginTop: "10px"
+        }}>Download Projects</Button>
+        <Button variant="outlined"  color="danger" onClick={function(){}} fullWidth>Clear Projects</Button>
+      </Box>
+
+    
     </Box>
   );
 }

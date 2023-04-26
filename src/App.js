@@ -10,6 +10,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 
+
 function App() {
   const firebaseConfig = {
     apiKey: "AIzaSyCd7dgwMl9FfHsGHsav4RVfjKCIWwUR91A",
@@ -27,21 +28,23 @@ function App() {
   getAuth(app);
 
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/generate" element={<Anything />} />
-      <Route path="/anything" element={<Anything />} />
-      <Route path="/search" element={<Anything />} />
-      <Route path="/brainstorm" element={<Anything />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/writer" element={<Anything />} />
+      <BrowserRouter>
+      <Routes> 
+        <Route path="/" element={<Main />} />
+        <Route path="/generate" element={<Anything />} />
+        <Route path="/anything" element={<Anything />} />
+        <Route path="/search" element={<Anything />} />
+        <Route path="/brainstorm" element={<Anything />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/writer" element={<Anything />} />
 
-      <Route path="*" element={<Custom404 />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-    </Routes>
-  </BrowserRouter>
+        <Route path="*" element={<Custom404 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />  
+      </Routes>
+     
+    </BrowserRouter>
+ 
   );
 }
 

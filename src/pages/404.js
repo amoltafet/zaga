@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@mui/joy/Button";
+import { Button, Grid } from "@mui/material";
 
 export default function Custom404() {
   return (

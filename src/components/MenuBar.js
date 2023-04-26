@@ -107,33 +107,17 @@ export default function MenuBar() {
             }}
           >
             <Button
-              aria-describedby={id}
+              aria-label="Like"
               variant="outlined"
               color="neutral"
-              sx={{ marginRight: "5px" }}
-              onClick={handleClick}
+              onClick={toggleDrawer("right", true)}
             >
               <AccountCircleOutlinedIcon />
             </Button>
-            <Popover
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              sx={{
-                marginTop: "10px",
-              }}
-            >
-              <Profile />
-            </Popover>
             <Button
               variant="outlined"
               color="neutral"
-              sx={{ marginRight: "5px" }}
+              sx={{ marginRight: "5px", marginLeft: "5px" }}
               aria-describedby={idNotification}
               onClick={handleNotificationClick}
             >
