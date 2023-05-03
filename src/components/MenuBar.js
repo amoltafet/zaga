@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { AppBar, Box, CssBaseline, Typography } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Button from "@mui/joy/Button";
 import Drawer from "@mui/material/Drawer";
@@ -10,7 +10,6 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import Settings from "./Settings";
 import Notifications from "./Notifications";
-import Profile from "./Profile";
 
 export default function MenuBar() {
   const [settings, setSettings] = React.useState({ right: false });

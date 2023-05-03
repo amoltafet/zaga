@@ -6,21 +6,56 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import FormHelperText from "@mui/joy/FormHelperText";
 import Button from '@mui/joy/Button';
-
-
 import Switch from "@mui/joy/Switch";
 import Profile from "./Profile";
+import { theme } from "../theme";
 
 export default function Settings({ toggleDrawer, anchor }) {
   const [checked, setChecked] = React.useState(false);
   const [dataPrivacy, setDataPrivacy] = React.useState(true);
 
+  // add global event listener for dark mode check box
+  React.useEffect(() => {
+    if (localStorage.getItem("darkMode")) {
+      document.body.classList.add("dark");
+      setChecked(true);
+    } else {
+      const darkMode = document.getElementById("darkMode");
+      darkMode.addEventListener("change", () => {
+        if (darkMode.checked ) {
+          document.body.classList.add("dark");
+          // add dark mode to local storage
+          localStorage.setItem("darkMode", true);
+        } else {
+          document.body.classList.remove("dark");
+          // remove dark mode from local storage
+          localStorage.removeItem("darkMode");
+        }
+      });
+    }
+    console.log("dark mode event listener added");
+  }, []);
 
+    React.useEffect(() => {
+      if (checked) {
+        document.body.classList.add("dark");
+        // add dark mode to local storage
+        localStorage.setItem("darkMode", true);
+      } else {
+        document.body.classList.remove("dark");
+        // remove dark mode from local storage
+         localStorage.removeItem("darkMode");
+      } 
+      
+  }, [checked]);
+
+  
+  
 
   return (
     <Box
       sx={{
-        width: anchor === "top" || anchor === "bottom" ? "auto" : 300,
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 350,
         padding: 2,
       }}
       role="presentation"
@@ -29,7 +64,7 @@ export default function Settings({ toggleDrawer, anchor }) {
       <Profile />
       <Divider sx={{ mt: 2, mb: 2 }} />
 
-      <Typography variant="overline"  sx={{ flexGrow: 1, p: 1 }}>
+      <Typography variant="overline" sx={{ flexGrow: 1, p: 1 }}>
         Settings
       </Typography>
 
@@ -46,6 +81,7 @@ export default function Settings({ toggleDrawer, anchor }) {
           onChange={(event) => setChecked(event.target.checked)}
           color={checked ? "success" : "neutral"}
           variant="outlined"
+          id="darkMode"
           endDecorator={checked ? "On" : "Off"}
           slotProps={{
             endDecorator: {

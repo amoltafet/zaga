@@ -25,7 +25,7 @@ export default async function GeneratePrompts (prompt, type) {
     // nothing
   }
 
-    const openai = new OpenAIApi(configuration);
+   const openai = new OpenAIApi(configuration);
       const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: prompt,

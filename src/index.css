@@ -21,4 +21,7 @@ Typography {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+.dark {
+  background-color: #242428;
+  color: white;
+}

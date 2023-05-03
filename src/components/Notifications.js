@@ -3,8 +3,11 @@ import InfoIcon from "@mui/icons-material/Info";
 import WarningIcon from "@mui/icons-material/Warning";
 import ReportIcon from "@mui/icons-material/Report";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import Alert from "@mui/joy/Alert";
 import Typography from "@mui/joy/Typography";
+import CardContent from "@mui/joy/CardContent";
+import CardOverflow from "@mui/joy/CardOverflow";
+import Divider from "@mui/joy/Divider";
+import Card from "@mui/joy/Card";
 
 export default function Notifications() {
   const items = [
@@ -24,28 +27,40 @@ export default function Notifications() {
         width: 100,
         flexDirection: "column",
         borderRadius: 10,
+        backgroundColor: "background.paper",
       }}
     >
-      {items.map(({ title, icon }) => (
-        <Alert
-          key={title}
-          sx={{ alignItems: "flex-start", borderRadius: 0 }}
-          startDecorator={React.cloneElement(icon, {
-            sx: { mt: "2px", mx: "4px" },
-            fontSize: "xl2",
-          })}
+      {items.map(({ title, icon, color }) => (
+        <Card
+          orientation="horizontal"
           variant="outlined"
-          color="neutral"
+          sx={{ width: 260, bgcolor: "background.body", borderRadius: 0 }}
         >
-          <div>
-            <Typography fontWeight="lg" mt={0.25}>
+          {icon}
+          <CardContent sx={{ px: 2 }}>
+            <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
               {title}
             </Typography>
-            <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
-              This is a time-sensitive {title} Alert.
-            </Typography>
-          </div>
-        </Alert>
+            <Typography level="body2"> This is an alert message </Typography>
+          </CardContent>
+          <Divider />
+          <CardOverflow
+            variant="soft"
+            color="primary"
+            sx={{
+              px: 0.2,
+              writingMode: "vertical-rl",
+              textAlign: "center",
+              fontSize: "xs2",
+              fontWeight: "xl2",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+              borderRadius: 0,
+            }}
+          >
+            {color}
+          </CardOverflow>
+        </Card>
       ))}
     </div>
   );

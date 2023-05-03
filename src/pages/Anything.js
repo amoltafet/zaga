@@ -17,7 +17,9 @@ import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import Generate from "./Generate";
 import pageInfo from "../context";
-
+import { theme } from "../theme";
+import MicNoneIcon from "@mui/icons-material/MicNone";
+import CampaignIcon from "@mui/icons-material/Campaign";
 export default function Anything() {
   const [data, setData] = useState([]);
   const [waiting, setWaiting] = useState(false);
@@ -47,8 +49,14 @@ export default function Anything() {
     if (lastPart !== "anything") {
       setShow(true);
       // set the boxOne and boxTwo titles
-      setBoxOne({ ...boxOne, title: pageInfo.find((page) => page.title === lastPart).boxOneTitle });
-      setBoxTwo({ ...boxTwo, title: pageInfo.find((page) => page.title === lastPart).boxTwoTitle });
+      setBoxOne({
+        ...boxOne,
+        title: pageInfo.find((page) => page.title === lastPart).boxOneTitle,
+      });
+      setBoxTwo({
+        ...boxTwo,
+        title: pageInfo.find((page) => page.title === lastPart).boxTwoTitle,
+      });
     } else {
       setShow(false);
     }
@@ -123,7 +131,7 @@ export default function Anything() {
     }
     setBoxOne({ ...boxOne, loading: true });
     setBoxTwo({ ...boxTwo, loading: true });
-   
+
     setData([...data, { user_input: value, chatgpt_response: "" }]);
     setWaiting(true);
     setTimeout(() => {
@@ -136,15 +144,23 @@ export default function Anything() {
     // update data
     setData([...data, { user_input: value, chatgpt_response: prompts }]);
     setWaiting(false);
-    
+
     // get updates for boxOne and boxTwo
     let boxOnePrompt = await GeneratePrompts("BoxOne", pageTitle);
     boxOnePrompt = boxOnePrompt.replace(/^\s+/g, "");
-    setBoxOne({ ...boxOne, array: [...boxOne.array, boxOnePrompt], loading: false });
+    setBoxOne({
+      ...boxOne,
+      array: [...boxOne.array, boxOnePrompt],
+      loading: false,
+    });
     let boxTwoPrompt = await GeneratePrompts("BoxTwo", pageTitle);
     boxTwoPrompt = boxTwoPrompt.replace(/^\s+/g, "");
-    setBoxTwo({ ...boxTwo, array: [...boxTwo.array, boxTwoPrompt], loading: false });
-    
+    setBoxTwo({
+      ...boxTwo,
+      array: [...boxTwo.array, boxTwoPrompt],
+      loading: false,
+    });
+
     // scroll to bottom
     setTimeout(() => {
       var objDiv = document.getElementById("outputBox");
@@ -186,23 +202,37 @@ export default function Anything() {
               <></>
             ) : (
               <>
-              <Alert
-                // make the key unique
-                key={index + 999999}
-                sx={{
-                  marginBottom: "1%",
-                  marginRight: "20%",
-                  whiteSpace: "pre-wrap",
-                }}>
-                {item.chatgpt_response}
-              </Alert>
-               <Typography variant="overline" sx={{ marginLeft: "1%" }}>
-                Did you like this response?
-              </Typography>
               <Chip
+                      color="primary"
+                      variant="outlined"
+                      startDecorator={<CampaignIcon fontSize="small" />}
+                      onClick={() => alert("You clicked the  button!")}
+                      sx={{
+                        marginBottom: "0.5%",
+                      }}
+                    />
+                <Alert
+                  // make the key unique
+                  key={index + 999999}
+                  sx={{
+                    marginBottom: "1%",
+                    marginRight: "20%",
+                    whiteSpace: "pre-wrap",
+                  }}
+                >
+                  {item.chatgpt_response}
+                </Alert>
+               
+                  <div>
+                    <Typography variant="overline" sx={{ marginLeft: "1%" }}>
+                      Did you like this response?
+                    </Typography>
+                    <Chip
                       color="success"
                       variant="outlined"
-                      startDecorator={<ThumbUpAltOutlinedIcon  fontSize="small"/>}
+                      startDecorator={
+                        <ThumbUpAltOutlinedIcon fontSize="small" />
+                      }
                       onClick={() => alert("You clicked the  button!")}
                       sx={{
                         marginLeft: "1%",
@@ -212,10 +242,13 @@ export default function Anything() {
                     <Chip
                       color="danger"
                       variant="outlined"
-                      startDecorator={<ThumbDownAltOutlinedIcon fontSize="small" />}
+                      startDecorator={
+                        <ThumbDownAltOutlinedIcon fontSize="small" />
+                      }
                       onClick={() => alert("You clicked the  button!")}
-                      
-                   />
+                    />
+                  </div>
+                 
               </>
             )}
           </>
@@ -322,7 +355,11 @@ export default function Anything() {
               <></>
             )}
             <Input
-              startDecorator={<TextFieldsIcon />}
+              startDecorator={
+                <IconButton variant="outlined">
+                  <MicNoneIcon />
+                </IconButton>
+              }
               endDecorator={ButtonStyle()}
               id="input"
               placeholder="Type something..."
@@ -331,7 +368,7 @@ export default function Anything() {
           </Grid>
           {show ? (
             <Grid xs={4} sx={{ padding: "8px" }}>
-             {displayPage()}
+              {displayPage()}
             </Grid>
           ) : (
             <></>

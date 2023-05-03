@@ -24,7 +24,7 @@ export default function Register() {
   const paperStyle = {
     padding: 20,
     height: "60vh",
-    width: 280,
+    width: 350,
     margin: "10% auto",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };

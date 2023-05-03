@@ -10,19 +10,31 @@ import { Grid } from "@mui/material";
 
 export default function Projects() {
   const [user, setUser] = React.useState(null);
+   // grab the event listener for dark mode
+   if (localStorage.getItem("darkMode")) {
+     document.body.classList.add("dark");
+   } else {
+     document.body.classList.remove("dark");
+   }
 
   let numOverflowCards = 5;
   return (
     <div
       style={{
         marginLeft: "20%",
-        marginRight: "20%",
-      }}
+        marginRight: "20%",      }}
     >
       <MenuBar />
-      <Typography variant="h1" sx={{ fontSize: "h1", marginTop: "4%"}}>
+      <Typography variant="h1" sx={{ fontSize: "h1", marginTop: "10%"}}>
         Projects
       </Typography>
+      <Button variant="outlined" size="sm" sx={{ marginTop: "1%", marginBottom: "1%", marginRight: "0.5%" }}>
+        Create New Project
+      </Button>
+      <Button variant="soft" color="danger" size="sm" sx={{ marginTop: "1%" }} >
+        Delete Project
+      </Button>
+
       <Grid container spacing={2}>
         {Array.from(Array(numOverflowCards).keys()).map((_, index) => (
           <Grid item xs={4} key={index}>
