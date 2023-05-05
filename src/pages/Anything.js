@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import ButtonJoy from "@mui/joy/Button";
 import Input from "@mui/joy/Input";
 import TextFieldsIcon from "@mui/icons-material/TextFields";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -19,6 +20,9 @@ import Generate from "./Generate";
 import pageInfo from "../context";
 import MicNoneIcon from "@mui/icons-material/MicNone";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+
 export default function Anything() {
   const [data, setData] = useState([]);
   const [waiting, setWaiting] = useState(false);
@@ -100,7 +104,7 @@ export default function Anything() {
             marginLeft: "20%",
             marginRight: "20%",
           }}
-        >
+        > 
           <CircularProgress size="sm" />
         </Button>
       );
@@ -201,15 +205,47 @@ export default function Anything() {
               <></>
             ) : (
               <>
-              <Chip
-                      color="primary"
-                      variant="outlined"
-                      startDecorator={<CampaignIcon fontSize="small" />}
-                      onClick={() => alert("You clicked the  button!")}
-                      sx={{
-                        marginBottom: "0.5%",
-                      }}
-                    />
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <Chip
+                    color="primary"
+                    variant="outlined"
+                    startDecorator={<CampaignIcon fontSize="small" />}
+                    onClick={() => alert("You clicked the  button!")}
+                    sx={{
+                      marginBottom: "0.5%",
+                    }}
+                  />
+                  <div
+                    style={{
+                      marginRight: "20%",
+                    }}
+                  >
+                    <Tooltip title="Previous">
+                      <ButtonJoy
+                        color="primary"
+                        variant="soft"
+                        onClick={() => alert("You clicked the  button!")}
+                        sx={{ borderRadius: 0 }}
+                        size="small"
+                      >
+                        <KeyboardArrowLeftIcon />
+                      </ButtonJoy>
+                    </Tooltip>
+                    <Tooltip title="Next">
+                      <ButtonJoy
+                        color="primary"
+                        variant="soft"
+                        onClick={() => alert("You clicked the  button!")}
+                        sx={{ borderRadius: 0 }}
+                        size="small"
+                      >
+                        <KeyboardArrowRightIcon />
+                      </ButtonJoy>
+                    </Tooltip>
+                  </div>
+                </div>
                 <Alert
                   // make the key unique
                   key={index + 999999}
@@ -221,33 +257,30 @@ export default function Anything() {
                 >
                   {item.chatgpt_response}
                 </Alert>
-               
-                  <div>
-                    <Typography variant="overline" sx={{ marginLeft: "1%" }}>
-                      Did you like this response?
-                    </Typography>
-                    <Chip
-                      color="success"
-                      variant="outlined"
-                      startDecorator={
-                        <ThumbUpAltOutlinedIcon fontSize="small" />
-                      }
-                      onClick={() => alert("You clicked the  button!")}
-                      sx={{
-                        marginLeft: "1%",
-                        marginRight: "1%",
-                      }}
-                    />
-                    <Chip
-                      color="danger"
-                      variant="outlined"
-                      startDecorator={
-                        <ThumbDownAltOutlinedIcon fontSize="small" />
-                      }
-                      onClick={() => alert("You clicked the  button!")}
-                    />
-                  </div>
-                 
+
+                <div>
+                  <Typography variant="overline" sx={{ marginLeft: "1%" }}>
+                    Did you like this response?
+                  </Typography>
+                  <Chip
+                    color="success"
+                    variant="outlined"
+                    startDecorator={<ThumbUpAltOutlinedIcon fontSize="small" />}
+                    onClick={() => alert("You clicked the  button!")}
+                    sx={{
+                      marginLeft: "1%",
+                      marginRight: "1%",
+                    }}
+                  />
+                  <Chip
+                    color="danger"
+                    variant="outlined"
+                    startDecorator={
+                      <ThumbDownAltOutlinedIcon fontSize="small" />
+                    }
+                    onClick={() => alert("You clicked the  button!")}
+                  />
+                </div>
               </>
             )}
           </>
@@ -256,7 +289,7 @@ export default function Anything() {
     }
   };
 
-  let BoxHeight = window.innerHeight * 0.74;
+  let BoxHeight = window.innerHeight * 0.7;
 
   const handleChipClick = (text) => {
     console.log(text);
