@@ -28,9 +28,9 @@ export default function MediaCard({ props }) {
         overflow: "hidden",
       }}
     >
-      <AspectRatio ratio="1" sx={{ width: 90 }}>
-        <img src={images(`${logo}`)} loading="lazy" alt="" />
-      </AspectRatio>
+
+       {logo}
+
       <div>
         <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
           {title}

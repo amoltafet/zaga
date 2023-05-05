@@ -13,52 +13,59 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
 import Footer from "../components/Footer";
 
+import CreateIcon from "@mui/icons-material/Create";
+import CodeIcon from "@mui/icons-material/Code";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
+import SearchIcon from "@mui/icons-material/Search";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+
 const images = require.context("../images", true);
 function Main() {
-  const pages = [
-    {
-      title: "Essay Generator",
-      logo: "./writing.jpeg",
-      link: "/writer",
-      describe: "Generate any text based on a prompt",
-      example: "Write me a story about a dog",
-    },
-    {
-      title: "Generate Code",
-      logo: "./code.jpeg",
-      link: "/generate",
-      describe: "Generate code based on a prompt",
-      example: "Generate http code for a website",
-    },
-    {
-      title: "Brainstorm Ideas",
-      logo: "./brainstorm.jpeg",
-      link: "/brainstorm",
-      describe: "Generate ideas based on a prompt",
-      example: "Generate ideas for a new business",
-    },
-    {
-      title: "Do Anything",
-      logo: "./ideas.jpeg",
-      link: "/anything",
-      describe: "Generate anything based on a prompt",
-      example: "What is the meaning of life?",
-    },
-    {
-      title: "Search the Web",
-      logo: "./search.jpeg",
-      link: "/search",
-      describe: "Search for anything based on a prompt",
-      example: "Where is the nearest coffee shop?",
-    },
-    {
-      title: "Help Center",
-      logo: "./help.jpeg",
-      link: "/help",
-      describe: "Learn how to use this website",
-      example: "Where do I change my password?",
-    },
-  ];
+    const pages = [
+      {
+        title: "Essay Generator",
+        logo: <CreateIcon color="primary"/>, // Replace the file path with an MUI icon
+        link: "/writer",
+        describe: "Generate any text based on a prompt",
+        example: "Write me a story about a dog",
+      },
+      {
+        title: "Generate Code",
+        logo: <CodeIcon color="primary"/>,
+        link: "/generate",
+        describe: "Generate code based on a prompt",
+        example: "Generate http code for a website",
+      },
+      {
+        title: "Brainstorm Ideas",
+        logo: <LightbulbIcon color="primary"/>,
+        link: "/brainstorm",
+        describe: "Generate ideas based on a prompt",
+        example: "Generate ideas for a new business",
+      },
+      {
+        title: "Do Anything",
+        logo: <EmojiObjectsIcon color="primary"/>,
+        link: "/anything",
+        describe: "Generate anything based on a prompt",
+        example: "What is the meaning of life?",
+      },
+      {
+        title: "Search the Web",
+        logo: <SearchIcon color="primary" />,
+        link: "/search",
+        describe: "Search for anything based on a prompt",
+        example: "Where is the nearest coffee shop?",
+      },
+      {
+        title: "Help Center",
+        logo: <HelpOutlineIcon color="primary" />,
+        link: "/help",
+        describe: "Learn how to use this website",
+        example: "Where do I change my password?",
+      },
+    ];
 
 
    // grab the event listener for dark mode
