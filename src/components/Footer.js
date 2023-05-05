@@ -12,9 +12,9 @@ export default function Footer() {
                 <Typography variant="overline" sx={{ flexGrow: 1, p: 1 }}>
                     © 2023 - Gonzaga University
                 </Typography>
-                <Typography variant="overline" sx={{ flexGrow: 1, p: 1 }}>
+                {/* <Typography variant="overline" sx={{ flexGrow: 1, p: 1 }}>
                     This application is part of a research project conducted by the Daniel Olivares, Ph.D.
-                </Typography>
+                </Typography> */}
                 <Typography variant="overline" sx={{ flexGrow: 1, p: 1 }}>
                  
                 </Typography>
