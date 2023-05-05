@@ -11,6 +11,7 @@ import { AspectRatio } from "@mui/joy";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
+import Footer from "../components/Footer";
 
 const images = require.context("../images", true);
 function Main() {
@@ -73,10 +74,9 @@ function Main() {
 
       <div
         style={{
-          marginTop: "10%",
-          position: "absolute",
-          left: "10%",
-          right: "10%",
+          marginTop: "5%",
+          marginLeft: "10%",
+          marginRight: "10%",
         }}
       >
         <Grid container spacing={2}>
@@ -152,6 +152,8 @@ function Main() {
           <ThumbUp />
         </Button>
       </div>
+      <Footer />
+
     </div>
   );
 }

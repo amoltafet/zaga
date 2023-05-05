@@ -17,7 +17,6 @@ import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import Generate from "./Generate";
 import pageInfo from "../context";
-import { theme } from "../theme";
 import MicNoneIcon from "@mui/icons-material/MicNone";
 import CampaignIcon from "@mui/icons-material/Campaign";
 export default function Anything() {
@@ -257,7 +256,7 @@ export default function Anything() {
     }
   };
 
-  let BoxHeight = window.innerHeight * 0.7;
+  let BoxHeight = window.innerHeight * 0.74;
 
   const handleChipClick = (text) => {
     console.log(text);
@@ -272,7 +271,6 @@ export default function Anything() {
       <MenuBar />
       <div
         style={{
-          marginTop: "5%",
           marginLeft: "4%",
           marginRight: "2%",
         }}

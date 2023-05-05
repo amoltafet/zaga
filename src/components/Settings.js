@@ -120,6 +120,31 @@ export default function Settings({ toggleDrawer, anchor }) {
         />
       </FormControl>
 
+      <FormControl
+        orientation="horizontal"
+        sx={{ width: "100%", justifyContent: "space-between" }}
+      >
+        <Box sx={{padding: 1}}>
+          <FormLabel>Accessability Mode</FormLabel>
+          <FormHelperText sx={{ mt: 0 }}>Enabled by default.</FormHelperText>
+        </Box>
+        <Switch
+          checked={true}
+          //onChange={(event) => setChecked(event.target.checked)}
+          color={checked ? "success" : "neutral"}
+          variant="outlined"
+          id="darkMode"
+          endDecorator={checked ? "On" : "Off"}
+          slotProps={{
+            endDecorator: {
+              sx: {
+                minWidth: 24,
+              },
+            },
+          }}
+        />
+      </FormControl>
+
       <Button variant="outlined"  color="success" onClick={function(){}} fullWidth sx={{
           marginBottom: "10px",
           marginTop: "10px"

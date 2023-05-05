@@ -7,6 +7,7 @@ import Typography from "@mui/joy/Typography";
 import MenuBar from "../components/MenuBar";
 import Button from "@mui/joy/Button";
 import { Grid } from "@mui/material";
+import Footer from "../components/Footer";
 
 export default function Projects() {
   const [user, setUser] = React.useState(null);
@@ -19,13 +20,15 @@ export default function Projects() {
 
   let numOverflowCards = 5;
   return (
+    <>      
+    <MenuBar />
+
     <div
       style={{
         marginLeft: "20%",
         marginRight: "20%",      }}
     >
-      <MenuBar />
-      <Typography variant="h1" sx={{ fontSize: "h1", marginTop: "10%"}}>
+      <Typography variant="h1" sx={{ fontSize: "h1"}}>
         Projects
       </Typography>
       <Button variant="outlined" size="sm" sx={{ marginTop: "1%", marginBottom: "1%", marginRight: "0.5%" }}>
@@ -42,7 +45,10 @@ export default function Projects() {
           </Grid>
         ))}
       </Grid>
+      
     </div>
+    <Footer />
+    </>
   );
 }
 

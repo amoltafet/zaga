@@ -10,6 +10,15 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import Settings from "./Settings";
 import Notifications from "./Notifications";
+import { Avatar, Link } from "@mui/joy";
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import AppBar from '@mui/material/AppBar';
+import Tooltip from "@mui/joy/Tooltip";
+
+
 
 export default function MenuBar() {
   const [settings, setSettings] = React.useState({ right: false });
@@ -68,22 +77,18 @@ export default function MenuBar() {
     } else {
       return (
         <div
-          style={{
-            position: "absolute",
-            left: "3%",
-            marginTop: "1%",
-          }}
         >
-          <Button
+           <Button
             aria-label="Like"
             variant="outlined"
             color="neutral"
-            sx={{ marginRight: "5px" }}
+            sx={{ marginRight: "50px" }}
             onClick={backBtn}
           >
             {" "}
             <KeyboardArrowLeftIcon fontSize="small" /> Back
           </Button>
+         
         </div>
       );
     }
@@ -92,20 +97,26 @@ export default function MenuBar() {
   return (
     <>
       <CssBaseline />
-      <Grid container>
-        <Grid item xs={12}>
-          <Box sx={{ flexGrow: 1 }}>
-          {backBtnDisplay()}
-          
 
-          <div
-            style={{
-              position: "absolute",
-              right: "3%",
-              marginTop: "1%",
-            }}
-          >
-            <Button
+     <Box sx={{ flexGrow: 1}}>
+      <AppBar position="static" 
+        sx={{ backgroundColor: "transparent", padding: "10px", marginBottom: "10px", 
+        boxShadow: "none", borderBottom: "1px solid #E0E0E0"
+      }}
+      >
+        <Toolbar>
+          <Link href="/">
+          <Avatar src={require("../images/logo.png")} alt="logo" 
+              sx={{ width: 50, height: 50, flexShrink: 0, flexGrow: 0, alignSelf: "center" }}
+          />  </Link>
+          <Typography variant="overline"  sx={{ flexGrow: 1, color: "#427FF6", fontSize:
+          "1.5rem", fontWeight: "bold", marginLeft: "10px"
+        }}>
+            ZAG AI
+          </Typography>
+         
+         
+          <Button
               aria-label="Like"
               variant="outlined"
               color="neutral"
@@ -145,9 +156,9 @@ export default function MenuBar() {
             >
               <SettingsOutlinedIcon />
             </Button>
-          </div>
-          <div>
-            {["right"].map((anchor) => (
+        </Toolbar>
+      </AppBar>
+      {["right"].map((anchor) => (
               <React.Fragment key={anchor}>
                 <Drawer
                   anchor={anchor}
@@ -158,10 +169,8 @@ export default function MenuBar() {
                 </Drawer>
               </React.Fragment>
             ))}
-          </div>
-          </Box>
-        </Grid>
-      </Grid>
+    </Box>
+     
     </>
   );
 }
