@@ -60,7 +60,7 @@ We would like to express our sincere gratitude to Gonzaga University for their c
 For any further inquiries or collaboration opportunities, feel free to contact our team:
 
 - Jakob Kubicki - [@jakobkubicki](https://github.com/jakobkubicki)
-- Amir Moltamol - [@amoltafet](https://github.com/amoltafet)
+- Ahmad Moltafet - [@amoltafet](https://github.com/amoltafet)
 
 ---
 Developed with :heart: by the ZAG AI Development Team
