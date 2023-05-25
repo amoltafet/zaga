@@ -7,9 +7,8 @@ import Custom404 from "./pages/404";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useState, useEffect } from 'react';
 
 function App() {
   const firebaseConfig = {
@@ -22,34 +21,37 @@ function App() {
     measurementId: "G-V846TBDXJ7"
   };
 
-
-    // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  getAuth(app);
+  const auth = getAuth(app);
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, currentUser => {
+      setUser(currentUser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [auth]);
 
   return (
       <BrowserRouter>
       <Routes> 
-        <Route path="/" element={<Main />} />
-        <Route path="/generate" element={<Anything />} />
-        <Route path="/anything" element={<Anything />} />
-        <Route path="/search" element={<Anything />} />
-        <Route path="/brainstorm" element={<Anything />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/writer" element={<Anything />} />
-
+        <Route path="/" element={<Main user={user} />} />
+        <Route path="/generate" element={<Anything user={user} />} />
+        <Route path="/anything" element={<Anything user={user} />} />
+        <Route path="/search" element={<Anything user={user} />} />
+        <Route path="/brainstorm" element={<Anything user={user} />} />
+        <Route path="/projects" element={<Projects user={user} />} />
+        <Route path="/writer" element={<Anything user={user} />} />
         <Route path="*" element={<Custom404 />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />  
       </Routes>
-     
     </BrowserRouter>
- 
   );
 }
 
 export default App;
-
-
-
-
