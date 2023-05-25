@@ -8,17 +8,51 @@ import MenuBar from "../components/MenuBar";
 import Button from "@mui/joy/Button";
 import { Grid } from "@mui/material";
 import Footer from "../components/Footer";
+import { getApp } from 'firebase/app';
+import { getDatabase, ref, onValue } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
 
 export default function Projects() {
-  const [user, setUser] = React.useState(null);
-   // grab the event listener for dark mode
-   if (localStorage.getItem("darkMode")) {
-     document.body.classList.add("dark");
-   } else {
-     document.body.classList.remove("dark");
-   }
+  const [projects, setProjects] = React.useState([]);
+  const [userID, setUserID] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(true);
+  
+  const app = getApp();
+  const db = getDatabase(app);
 
-  let numOverflowCards = 5;
+  React.useEffect(() => {
+    const auth = getAuth(app);
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        const userID = user.uid;
+        setUserID(userID);
+        console.log('User is logged in with ID:', userID);
+
+        const projectsRef = ref(db, 'users/' + userID + '/projects');
+        console.log('About to fetch projects for user:', userID);
+        onValue(
+          projectsRef,
+          snapshot => {
+            console.log('Fetched projects for user:', userID);
+            const data = snapshot.val();
+            setProjects(data ? Object.keys(data).map(key => ({ key, ...data[key] })) : []);
+            setIsLoading(false);
+          },
+          error => {
+            console.log('Error fetching projects:', error);
+            setIsLoading(false);
+          }
+        );
+      } else {
+        console.log('User not logged in');
+        setIsLoading(false);
+      }
+    });
+
+    // Don't forget to unsubscribe when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
   return (
     <>      
     <MenuBar />
@@ -26,7 +60,8 @@ export default function Projects() {
     <div
       style={{
         marginLeft: "20%",
-        marginRight: "20%",      }}
+        marginRight: "20%",      
+      }}
     >
       <Typography variant="h1" sx={{ fontSize: "h1"}}>
         Projects
@@ -38,13 +73,17 @@ export default function Projects() {
         Delete Project
       </Button>
 
-      <Grid container spacing={2}>
-        {Array.from(Array(numOverflowCards).keys()).map((_, index) => (
-          <Grid item xs={4} key={index}>
-            <OverflowCard />
-          </Grid>
-        ))}
-      </Grid>
+      {isLoading ? (
+        <p>Loading projects...</p>
+      ) : (
+        <Grid container spacing={2}>
+          {projects.map((project, index) => (
+            <Grid item xs={4} key={index}>
+              <OverflowCard project={project} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
       
     </div>
     <Footer />
@@ -52,7 +91,7 @@ export default function Projects() {
   );
 }
 
-function OverflowCard() {
+function OverflowCard({ project }) {
   return (
     <Card variant="outlined" sx={{ width: "100%" }}>
       <CardOverflow>
@@ -65,34 +104,13 @@ function OverflowCard() {
           />
         </AspectRatio>
       </CardOverflow>
-      <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-        My Table Project
+      <Typography variant="h4">{project.name}</Typography>
+      <Divider sx={{ my: "1%" }} />
+      <Typography variant="body2" sx={{ color: "text.secondary", overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}>
+        {project.data?.boxOne?.array?.join ? project.data.boxOne.array.join("\n") : ''}
       </Typography>
-      <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-        A table project that I made for my family
-      </Typography>
-      <Divider />
-      <CardOverflow
-        variant="soft"
-        sx={{
-          display: "flex",
-          gap: 1.5,
-          py: 1.5,
-          px: "var(--Card-padding)",
-          bgcolor: "background.level1",
-        }}
-      >
-        <Button variant="outlined" size="sm">
-          View
-        </Button>
-        <Divider orientation="vertical" />
-        <Typography
-          level="body2"
-          sx={{ fontWeight: "md", color: "text.secondary", marginTop: "1%" }}
-        >
-          1 hour ago
-        </Typography>
-      </CardOverflow>
+      <Button sx={{ marginTop: "1%" }}>Open Project</Button>
     </Card>
   );
 }
+
