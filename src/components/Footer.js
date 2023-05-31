@@ -10,7 +10,7 @@ export default function Footer() {
             <Divider sx={{marginTop: "1%"}}/>
             <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "1%" }}>
                 <Typography variant="overline" sx={{ flexGrow: 1, p: 1 }}>
-                    © 2023 - Gonzaga University
+                    © 2023
                 </Typography>
                 {/* <Typography variant="overline" sx={{ flexGrow: 1, p: 1 }}>
                     This application is part of a research project conducted by the Daniel Olivares, Ph.D.
